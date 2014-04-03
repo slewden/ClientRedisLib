@@ -968,8 +968,8 @@
             <summary>
             Add the command string to the begining of the array argument
             </summary>
+            <param name="cmd">La commande</param>
             <param name="arguments">array of strings</param>
-            <param name="fieldValue">first tuple</param>
             <param name="fieldsValues">array of Tuple key value</param>
             <returns>One array with command first and arguments after</returns>
         </member>

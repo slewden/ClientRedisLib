@@ -1,12 +1,12 @@
 ﻿namespace ClientRedisLib.RedisClass
 {
   /// <summary>
-  /// Interface to make analyse of unified protocol work
+  /// Interface to make analyze of unified protocol work
   /// </summary>
   public interface IReadUnifiedProtocol
   {
     /// <summary>
-    /// Return the readxx last error
+    /// Return the READXX last error
     /// </summary>
     string LastErrorText { get; }
     
@@ -24,7 +24,7 @@
     string ReadLine();
 
     /// <summary>
-    /// Read lenght car and place it in retbuf return the number of char in retbuf
+    /// Read length car and place it in RETBUF return the number of char in RETBUF
     /// </summary>
     /// <param name="retbuf">Read buffer to fill</param>
     /// <param name="lenght">Number of char to fill</param>

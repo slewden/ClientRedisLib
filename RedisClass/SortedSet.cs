@@ -1,11 +1,12 @@
 ﻿namespace ClientRedisLib.RedisClass
 {
   /// <summary>
-  /// Class to manipulate a sorted set Ie : a score and a member
+  /// Class to manipulate a sorted set IE : a score and a member
   /// </summary>
   public class SortedSet
   {
     /// <summary>
+    /// Initializes a new instance of the <see cref="SortedSet" /> class.
     /// Initialize an new sorted set
     /// </summary>
     /// <param name="score">the score</param>

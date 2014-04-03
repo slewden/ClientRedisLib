@@ -11,7 +11,7 @@ namespace ClientRedisLib.RedisClass
   public enum ZAggregate
   {
     /// <summary>
-    /// Apply the default aggregate fonction (the sum fonction)
+    /// Apply the default aggregate function (the sum function)
     /// </summary>
     Default,
 
@@ -26,7 +26,7 @@ namespace ClientRedisLib.RedisClass
     Min,
 
     /// <summary>
-    /// Get the maximimum of the scores
+    /// Get the maximum of the scores
     /// </summary>
     Max,
   }

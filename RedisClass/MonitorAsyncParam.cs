@@ -3,7 +3,7 @@
 namespace ClientRedisLib.RedisClass
 {
   /// <summary>
-  /// Parameters for asynchrone call of then MONITOR REDIS server method
+  /// Parameters for asynchronous call of then MONITOR REDIS server method
   /// </summary>
   public class MonitorAsyncParam
   {
@@ -18,6 +18,7 @@ namespace ClientRedisLib.RedisClass
     private System.IO.BufferedStream bufferedStream;
   
     /// <summary>
+    /// Initializes a new instance of the <see cref="MonitorAsyncParam" /> class.
     /// Default Constructor
     /// </summary>
     /// <param name="bufferedStream">RedisConnector stream</param>

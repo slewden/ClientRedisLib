@@ -3,14 +3,15 @@
 namespace ClientRedisLib
 {
   /// <summary>
-  /// Class to manipulate SLOWLOG Data informations 
+  /// Class to manipulate SLOWLOG Data information 
   /// SlowLog are the most slow command run on the REDIS server
   /// this class expose all properties
   /// </summary>
   public class SlowLogData
   {
     /// <summary>
-    /// Fill all properties from de receive datas for one SlowLog
+    /// Initializes a new instance of the <see cref="SlowLogData" /> class.
+    /// Fill all properties from de receive data for one SlowLog
     /// </summary>
     /// <param name="line">Line from RedisConnector</param>
     internal SlowLogData(string line)

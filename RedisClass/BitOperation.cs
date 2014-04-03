@@ -1,7 +1,7 @@
 ﻿namespace ClientRedisLib.RedisClass
 {
   /// <summary>
-  /// Redis Bitop operations
+  /// Redis BITOP operations
   /// </summary>
   public enum BitOperation
   {

@@ -1,0 +1,8 @@
+<StyleCopSettings Version="105">
+  <GlobalSettings>
+    <StringProperty Name="Culture">en-US</StringProperty>
+    <CollectionProperty Name="RecognizedWords">
+      <Value>Redis</Value>
+    </CollectionProperty>
+  </GlobalSettings>
+</StyleCopSettings>

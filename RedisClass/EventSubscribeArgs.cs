@@ -6,26 +6,27 @@ using System.Text;
 namespace ClientRedisLib.RedisClass
 {
   /// <summary>
-  /// This class store all published informations
+  /// This class store all published information
   /// </summary>
   public class EventSubscribeArgs
   {
     /// <summary>
+    /// Initializes a new instance of the <see cref="EventSubscribeArgs" /> class.
     /// Default constructor
     /// </summary>
-    /// <param name="informations">arrys of the informations returne by subcribe or psubscribe commands</param>
+    /// <param name="informations">arrays of the information returned by SUBSCRIBE or PSUBSCRIBE commands</param>
     public EventSubscribeArgs(string[] informations)
     {
       this.AnalyseMessage(informations);
     }
 
     /// <summary>
-    /// Contains "message" or "pmessage" 
+    /// Contains "MESSAGE" or "PMESSAGE" 
     /// </summary>
     public string MessageType { get; private set; }
 
     /// <summary>
-    /// Pattern use if Psubscribe is used
+    /// Pattern use if PSUBSCRIBE is used
     /// </summary>
     public string Pattern { get; private set; }
 
@@ -35,7 +36,7 @@ namespace ClientRedisLib.RedisClass
     public string Chanel { get; private set; }
 
     /// <summary>
-    /// Publised message
+    /// Published message
     /// </summary>
     public string Message { get; private set; }
 
@@ -57,7 +58,7 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Get the string that reprents this object
+    /// gets the string that represents this object
     /// </summary>
     /// <returns>the string</returns>
     public override string ToString()
@@ -77,9 +78,9 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Analyse the array to fill this object
+    /// Analyze the array to fill this object
     /// </summary>
-    /// <param name="informations">arrys of the informations returne by subcribe or psubscribe commands</param>
+    /// <param name="informations">arrays of the information returned by SUBSCRIBE or PSUBSCRIBE commands</param>
     private void AnalyseMessage(string[] informations)
     {
       if (informations == null || informations.Length < 3 || informations.Length > 4)

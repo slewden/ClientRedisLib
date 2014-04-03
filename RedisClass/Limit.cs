@@ -1,11 +1,12 @@
 ﻿namespace ClientRedisLib.RedisClass
 {
   /// <summary>
-  /// Argumet of SORT command in REDIS to limit returns
+  /// Argument of SORT command in REDIS to limit returns
   /// </summary>
   public class Limit
   {
     /// <summary>
+    /// Initializes a new instance of the <see cref="Limit" /> class.
     /// Default class constructor
     /// </summary>
     /// <param name="offset">the offset to set</param>

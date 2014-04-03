@@ -6,7 +6,7 @@ using System.Text;
 namespace ClientRedisLib.RedisClass
 {
   /// <summary>
-  /// Class to analyse the unified protocol and fill a Redisreponse
+  /// Class to analyze the unified protocol and fill a Redis response
   /// </summary>
   public class UnifiedProtocolReader
   {
@@ -14,7 +14,7 @@ namespace ClientRedisLib.RedisClass
     /// The read method
     /// </summary>
     /// <param name="from">object that can read on a flux</param>
-    /// <returns>the RedisReponse</returns>
+    /// <returns>the Redis response</returns>
     public static RedisReponse Read(IReadUnifiedProtocol from)
     {
       int c = from.ReadByte();
@@ -58,10 +58,10 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Return a error reponse
+    /// Return a error response
     /// </summary>
     /// <param name="from">object that can read on a flux</param>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     protected static RedisReponse ReadAnErrorReply(IReadUnifiedProtocol from)
     {
       string infos = from.ReadLine();
@@ -70,10 +70,10 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Read this reponse format   $[lenght]\r\n[lenght Datas]\r\n 
+    /// Read this response format   $[length]\r\n[length data]\r\n 
     /// </summary>
     /// <param name="from">object that can read on a flux</param>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     protected static RedisReponse ReadABulkReply(IReadUnifiedProtocol from)
     {
       string infos = from.ReadLine();
@@ -110,11 +110,11 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Read a multi-bulk reply *[nb param]\r\n[Bulk reply] * nb times
+    /// Read a multi-bulk reply *[number parameter]\r\n[Bulk reply] * number times
     /// </summary>
     /// <param name="from">object that can read on a flux</param>
-    /// <param name="level">Recursivity level</param>
-    /// <returns>the reponse</returns>
+    /// <param name="level">the level of recursion</param>
+    /// <returns>the response</returns>
     protected static RedisReponse ReadAMultiBulkReply(IReadUnifiedProtocol from, int level)
     {
       string infos = from.ReadLine();
@@ -201,10 +201,10 @@ namespace ClientRedisLib.RedisClass
     }
     
     /// <summary>
-    /// Read a reponse line
+    /// Read a response line
     /// </summary>
     /// <param name="from">object that can read on a flux</param>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     protected static RedisReponse ReadALineReply(IReadUnifiedProtocol from)
     {
       string infos = from.ReadLine();
@@ -212,7 +212,7 @@ namespace ClientRedisLib.RedisClass
     }
     
     /// <summary>
-    /// Read a reponse number
+    /// Read a response number
     /// </summary>
     /// <param name="from">object that can read on a flux</param>
     /// <returns>An answer with the number</returns>

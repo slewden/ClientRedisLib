@@ -10,6 +10,7 @@ namespace ClientRedisLib.RedisClass
   public class RedisReponse
   {
     /// <summary>
+    /// Initializes a new instance of the <see cref="RedisReponse" /> class.
     /// Internal constructor
     /// </summary>
     /// <param name="status">True if no error, false else</param>
@@ -22,12 +23,12 @@ namespace ClientRedisLib.RedisClass
 
     #region Properties
     /// <summary>
-    /// the reponse is an error ==> Errormessage will be filled
+    /// the response is an error ==> Error message will be filled
     /// </summary>
     public bool Success { get; private set; }
 
     /// <summary>
-    /// Describe the error filled only if Succes = false
+    /// Describe the error filled only if success = false
     /// </summary>
     public string ErrorMessage { get; private set; }
 
@@ -59,28 +60,28 @@ namespace ClientRedisLib.RedisClass
 
     #region static Constuctors
     /// <summary>
-    /// Get an empty reponse
+    /// Get an empty response
     /// </summary>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     public static RedisReponse GetEmpty()
     {
       return RedisReponse.GetLine(string.Empty);
     }
 
     /// <summary>
-    /// Get an empty list Reponse
+    /// Get an empty list response
     /// </summary>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     public static RedisReponse GetEmptyList()
     {
       return RedisReponse.GetDatas(new List<string>());
     }
 
     /// <summary>
-    /// Get a list reponse
+    /// Get a list response
     /// </summary>
-    /// <param name="datas">the list of datas</param>
-    /// <returns>the reponse</returns>
+    /// <param name="datas">the list of data</param>
+    /// <returns>the response</returns>
     public static RedisReponse GetDatas(List<string> datas)
     {
       RedisReponse rep = new RedisReponse(true);
@@ -89,11 +90,11 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Get an error reponse
+    /// Get an error response
     /// </summary>
     /// <param name="value">the error message</param>
     /// <param name="code">the error code</param>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     public static RedisReponse GetError(string value, EErrorCode code)
     {
       RedisReponse rep = new RedisReponse(false);
@@ -103,10 +104,10 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Get an unique reponse
+    /// Get an unique response
     /// </summary>
     /// <param name="value">the message</param>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     public static RedisReponse GetLine(string value)
     {
       RedisReponse rep = new RedisReponse(true);
@@ -115,10 +116,10 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Get a number reponse
+    /// Get a number response
     /// </summary>
     /// <param name="value">the number</param>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     public static RedisReponse GetNumber(string value)
     {
       double n = RedisConnector.GetDoubleFromString(value, double.NaN);
@@ -135,9 +136,9 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Get a pipeline reponse
+    /// Get a pipeline response
     /// </summary>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     public static RedisReponse GetPipelinning()
     {
       RedisReponse rep = new RedisReponse(true);
@@ -147,7 +148,7 @@ namespace ClientRedisLib.RedisClass
     #endregion
 
     /// <summary>
-    /// Make a string from Datas
+    /// Make a string from data
     /// </summary>
     /// <param name="splitter">char to separate every data</param>
     /// <returns>the string</returns>

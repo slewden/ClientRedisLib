@@ -157,13 +157,13 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "MIGRATE" command To transfert a key from the server to another one
+    /// Launch the "MIGRATE" command To transfer a key from the server to another one
     /// </summary>
     /// <param name="host">The Destination server host</param>
     /// <param name="port">The destination server port</param>
     /// <param name="key">the key to migrate</param>
     /// <param name="databaseId">the id of the destination database</param>
-    /// <param name="timeOut">the idle time OUT during migration (in millisconds)</param>
+    /// <param name="timeOut">the idle time OUT during migration (in millisecond)</param>
     /// <returns>the serialized content</returns>
     public bool Migrate(string host, int port, string key, int databaseId, long timeOut)
     {
@@ -197,7 +197,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "MOVE" command To transfert a key to another database on the same server
+    /// Launch the "MOVE" command To transfer a key to another database on the same server
     /// </summary>
     /// <param name="key">the key to migrate</param>
     /// <param name="databaseId">the id of the destination database</param>
@@ -240,7 +240,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "OBJECT ENCODING" command To get the encoding format of a key
     /// </summary>
-    /// <param name="key">The key to analyse</param>
+    /// <param name="key">The key to analyze</param>
     /// <returns>return the encoding format</returns>
     public string ObjectEncoding(string key)
     {
@@ -259,8 +259,8 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "OBJECT IDLETIME" command To get the time witch a key is not used
     /// </summary>
-    /// <param name="key">The key to analyse</param>
-    /// <returns>return the amout of time where a key is not used</returns>
+    /// <param name="key">The key to analyze</param>
+    /// <returns>returns the time during which a key was not used</returns>
     public TimeSpan ObjectIdletime(string key)
     {
       RedisReponse answer = this.SendCommand("OBJECT", "IDLETIME", key);
@@ -408,11 +408,11 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "RENAME" command To rename key to newkey
+    /// Launch the "RENAME" command To rename key to NEWKEY
     /// </summary>
     /// <param name="key">The key to rename</param>
     /// <param name="newKey">The new name of key</param>
-    /// <returns>trus if done</returns>
+    /// <returns>true if done</returns>
     public bool Rename(string key, string newKey)
     {
       RedisReponse answer = this.SendCommand("RENAME", key, newKey);
@@ -428,11 +428,11 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "RENAMENX" command To rename key to newkey only if newkey does not exists
+    /// Launch the "RENAMENX" command To rename key to NEWKEY only if NEWKEY does not exists
     /// </summary>
     /// <param name="key">The key to rename</param>
     /// <param name="newKey">The new name of key</param>
-    /// <returns>trus if done</returns>
+    /// <returns>true if done</returns>
     public bool RenameNX(string key, string newKey)
     {
       RedisReponse answer = this.SendCommand("RENAMENX", key, newKey);
@@ -573,7 +573,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "TYPE" command To get the type of a key 
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <returns>the type of a key</returns>
     public string Type(string key)
     {
@@ -597,7 +597,7 @@ namespace ClientRedisLib
     /// </summary>
     /// <param name="key">the key to update</param>
     /// <param name="value">the text to add</param>
-    /// <returns>the new lenght of the key</returns>
+    /// <returns>the new length of the key</returns>
     public int Append(string key, string value)
     {
       RedisReponse answer = this.SendCommand("APPEND", key, value);
@@ -681,7 +681,7 @@ namespace ClientRedisLib
     /// </summary>
     /// <param name="operation">the combine operation</param>
     /// <param name="destKey">the destination key</param>
-    /// <param name="keys">the array oof key to combine</param>
+    /// <param name="keys">the array of key to combine</param>
     /// <returns>the size of the result string</returns>
     public int BitOp(BitOperation operation, string destKey, params string[] keys)
     {
@@ -971,7 +971,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "MSET" command To set the values of series of keys
     /// </summary>
-    /// <param name="keyValues">list of the key values params</param>
+    /// <param name="keyValues">list of the key values parameters</param>
     /// <returns>true if ok</returns>
     public bool MSet(List<KeyValuePair<string, string>> keyValues)
     {
@@ -999,7 +999,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "MSETNX" command To set the values of series of keys
     /// </summary>
-    /// <param name="keyValues">list of the key values params</param>
+    /// <param name="keyValues">list of the key values parameters</param>
     /// <returns>true if ok</returns>
     public bool MSetNX(List<KeyValuePair<string, string>> keyValues)
     {
@@ -1160,9 +1160,9 @@ namespace ClientRedisLib
     /// starting at the specified offset, for the entire length of value
     /// </summary>
     /// <param name="key">the key to set</param>
-    /// <param name="offset">the ofsset</param>
+    /// <param name="offset">the offset</param>
     /// <param name="value">the value to set</param>
-    /// <returns>the total lenght of the string</returns>
+    /// <returns>the total length of the string</returns>
     public int SetRange(string key, int offset, string value)
     {
       RedisReponse answer = this.SendCommand("SETRANGE", key, offset.ToString(), value);
@@ -1186,7 +1186,7 @@ namespace ClientRedisLib
     /// Launch the "STRLEN" command To returns the length of the string value stored at key.
     /// </summary>
     /// <param name="key">the key</param>
-    /// <returns>the total lenght of the key</returns>
+    /// <returns>the total length of the key</returns>
     public int StrLen(string key)
     {
       RedisReponse answer = this.SendCommand("STRLEN", key);
@@ -1214,7 +1214,7 @@ namespace ClientRedisLib
     /// <param name="key">the key to update</param>
     /// <param name="field">the first field to remove</param>
     /// <param name="fields">the other fields to remove</param>
-    /// <returns>the lenght of deleted fields</returns>
+    /// <returns>the length of deleted fields</returns>
     public int HDel(string key, string field, params string[] fields)
     {
       RedisReponse answer = this.SendCommand(RedisConnector.MergeStringBefore(RedisConnector.MergeStringBefore("HDEL", key, field), fields));
@@ -1239,9 +1239,9 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "HEXISTS" command To returns if field is an existing field in the hash stored at key
     /// </summary>
-    /// <param name="key">the key analyse</param>
-    /// <param name="field">the field to analyse</param>
-    /// <returns>true if field existis in key</returns>
+    /// <param name="key">the key analyze</param>
+    /// <param name="field">the field to analyze</param>
+    /// <returns>true if field exists in key</returns>
     public bool HExists(string key, string field)
     {
       RedisReponse answer = this.SendCommand("HEXISTS", key, field);
@@ -1321,7 +1321,7 @@ namespace ClientRedisLib
     /// Launch the "HINCRBY" command To increment the number stored in field in the hash key
     /// </summary>
     /// <param name="key">the key to manipulate</param>
-    /// <param name="field">the field to incrment</param>
+    /// <param name="field">the field to increment</param>
     /// <param name="increment">the increment value (positive or negative)</param>
     /// <returns>the new value after operation</returns>
     public int HIncrBy(string key, string field, int increment)
@@ -1344,7 +1344,7 @@ namespace ClientRedisLib
     /// Launch the "HINCRBYFLOAT" command To increment the number stored in field in the hash key
     /// </summary>
     /// <param name="key">the key to manipulate</param>
-    /// <param name="field">the field to incrment</param>
+    /// <param name="field">the field to increment</param>
     /// <param name="increment">the increment value (positive or negative)</param>
     /// <returns>the new value after operation</returns>
     public double HIncrBYFloat(string key, string field, double increment)
@@ -1596,7 +1596,7 @@ namespace ClientRedisLib
     /// </summary>
     /// <param name="source">the source list</param>
     /// <param name="destination">the destination list</param>
-    /// <param name="timeOut">delay in seconds for waiting 0 = infity</param>
+    /// <param name="timeOut">delay in seconds for waiting 0 = infinity</param>
     /// <returns>the element being popped and pushed</returns>
     public string BRPopLPush(string source, string destination, int timeOut)
     {
@@ -1618,7 +1618,7 @@ namespace ClientRedisLib
     /// Launch the "LINDEX" command To returns the element at index index in the list stored at key
     /// </summary>
     /// <param name="key">the key</param>
-    /// <param name="index">the index to analyse</param>
+    /// <param name="index">the index to analyze</param>
     /// <returns>the value at the index</returns>
     public string LIndex(string key, int index)
     {
@@ -1640,7 +1640,7 @@ namespace ClientRedisLib
     /// Launch the "LINSERT" command To inserts value in the list stored at key either before or after the reference value pivot.
     /// </summary>
     /// <param name="key">the key</param>
-    /// <param name="after">the index to analyse</param>
+    /// <param name="after">the index to analyze</param>
     /// <param name="pivot">the value after or before we must insert value</param>
     /// <param name="value">the inserted value</param>
     /// <returns>the length of the list after the insert operation, or -1 when the value pivot was not found</returns>
@@ -1668,7 +1668,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "LLEN" command To returns the length of the list stored at key
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <returns>the length of the list</returns>
     public int LLen(string key)
     {
@@ -1718,7 +1718,7 @@ namespace ClientRedisLib
     /// <param name="key">the key to populate</param>
     /// <param name="value">the first value to push into the list</param>
     /// <param name="values">other values to push into the list</param>
-    /// <returns>the lenght of then list after the push operation</returns>
+    /// <returns>the length of then list after the push operation</returns>
     public int LPush(string key, string value, params string[] values)
     {
       if (values.Length == 0 || this.GetServerVersion() > SERVER24)
@@ -1759,7 +1759,7 @@ namespace ClientRedisLib
     /// </summary>
     /// <param name="key">the key to populate</param>
     /// <param name="value">the value to push into the list</param>
-    /// <returns>the lenght of then list after the push operation</returns>
+    /// <returns>the length of then list after the push operation</returns>
     public int LPushX(string key, string value)
     {
       RedisReponse answer = this.SendCommand("LPUSHX", key, value);
@@ -1808,7 +1808,7 @@ namespace ClientRedisLib
     /// Launch the "LREM" command To removes the first count occurrences of elements equal to value from the list stored at key
     /// </summary>
     /// <param name="key">the key to populate</param>
-    /// <param name="count">the number of removed element &gt;0 start from head to tail, &lt;0 sart from tail to head, equal 0 remove all</param>
+    /// <param name="count">the number of removed element &gt;0 start from head to tail, &lt;0 start from tail to head, equal 0 remove all</param>
     /// <param name="value">the value to remove</param>
     /// <returns>the number of removed elements</returns>
     public int LRem(string key, int count, string value)
@@ -1865,7 +1865,7 @@ namespace ClientRedisLib
     /// </summary>
     /// <param name="key">the key to trim</param>
     /// <param name="start">the starting index</param>
-    /// <param name="stop">the stoping index</param>
+    /// <param name="stop">the last index</param>
     /// <returns>true if ok</returns>
     public bool LTrim(string key, int start, int stop)
     {
@@ -1938,7 +1938,7 @@ namespace ClientRedisLib
     /// <param name="key">the key to populate</param>
     /// <param name="value">the first value to push into the list</param>
     /// <param name="values">other values to push into the list</param>
-    /// <returns>the lenght of then list after the push operation</returns>
+    /// <returns>the length of then list after the push operation</returns>
     public int RPush(string key, string value, params string[] values)
     {
       if (values.Length == 0 || this.GetServerVersion() > SERVER24)
@@ -1979,7 +1979,7 @@ namespace ClientRedisLib
     /// </summary>
     /// <param name="key">the key to populate</param>
     /// <param name="value">the value to push into the list</param>
-    /// <returns>the lenght of then list after the push operation</returns>
+    /// <returns>the length of then list after the push operation</returns>
     public int RPushX(string key, string value)
     {
       RedisReponse answer = this.SendCommand("RPUSHX", key, value);
@@ -2058,7 +2058,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "SDIFF" command To get the member ok key who are not in the differents keys
+    /// Launch the "SDIFF" command To get the member ok key who are not in the different keys
     /// </summary>
     /// <param name="key">the key source</param>
     /// <param name="keys">the other keys to diff</param>
@@ -2078,7 +2078,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "SDIFFSTORE" command To get the member ok key who are not in the differents keys and store into destination
+    /// Launch the "SDIFFSTORE" command To get the member ok key who are not in the different keys and store into destination
     /// </summary>
     /// <param name="destination">the destination key</param>
     /// <param name="key">the key source</param>
@@ -2131,7 +2131,7 @@ namespace ClientRedisLib
     /// <param name="destination">the destination key</param>
     /// <param name="key">the key source</param>
     /// <param name="keys">the other keys to diff</param>
-    /// <returns>number of intersceted fields</returns>
+    /// <returns>the number of field intersection</returns>
     public int SInterStore(string destination, string key, params string[] keys)
     {
       RedisReponse answer = this.SendCommand(RedisConnector.MergeStringBefore(RedisConnector.MergeStringBefore("SINTERSTORE", destination, key), keys));
@@ -2229,7 +2229,7 @@ namespace ClientRedisLib
     /// Launch the "SPOP" command To remove and get a member of a set key
     /// </summary>
     /// <param name="key">the key</param>
-    /// <returns>the poped member</returns>
+    /// <returns>the popped member</returns>
     public string SPop(string key)
     {
       RedisReponse answer = this.SendCommand("SPOP", key);
@@ -2356,7 +2356,7 @@ namespace ClientRedisLib
     /// <param name="destination">the destination key</param>
     /// <param name="key">the key source</param>
     /// <param name="keys">the other keys to diff</param>
-    /// <returns>number of intersceted fields</returns>
+    /// <returns>the number of field intersection</returns>
     public int SUnionStore(string destination, string key, params string[] keys)
     {
       RedisReponse answer = this.SendCommand(RedisConnector.MergeStringBefore(RedisConnector.MergeStringBefore("SUNIONSTORE", destination, key), keys));
@@ -2498,11 +2498,11 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "ZINTERSTORE" command To computes the intersection of numkeys sorted sets given by the specified keys, and stores the result in destination
+    /// Launch the "ZINTERSTORE" command To computes the intersection of NUMKEYS sorted sets given by the specified keys, and stores the result in destination
     /// </summary>
     /// <param name="destination">the key to update or create as the result of the operation</param>
     /// <param name="keys">the list of keys </param>
-    /// <param name="aggregate">the agregate operation</param>
+    /// <param name="aggregate">the aggregate operation</param>
     /// <returns>the number of values in the result set</returns>
     public int ZInterStore(string destination, List<string> keys, ZAggregate aggregate)
     {
@@ -2510,11 +2510,11 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "ZINTERSTORE" command To computes the intersection of numkeys sorted sets given by the specified keys, and stores the result in destination
+    /// Launch the "ZINTERSTORE" command To computes the intersection of NUMKEYS sorted sets given by the specified keys, and stores the result in destination
     /// </summary>
     /// <param name="destination">the key to update or create as the result of the operation</param>
-    /// <param name="keys">the list of keys with ponderation weight</param>
-    /// <param name="aggregate">the agregate operation</param>
+    /// <param name="keys">the list of key with their weighting</param>
+    /// <param name="aggregate">the aggregate operation</param>
     /// <returns>the number of values in the result set</returns>
     public int ZInterStore(string destination, List<Tuple<string, double>> keys, ZAggregate aggregate)
     {
@@ -2524,10 +2524,10 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "ZRANGE" command To returns the specified range of elements in the sorted (lowest to highest) set stored at key
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="start">the starting index to return (zero based)</param>
-    /// <param name="stop">the stoping index to return (zero based)</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="stop">the last index to return (zero based)</param>
+    /// <param name="withScores">return score or not</param>
     /// <returns>the values</returns>
     public List<SortedSet> ZRange(string key, int start, int stop, bool withScores)
     {
@@ -2538,10 +2538,10 @@ namespace ClientRedisLib
     /// Launch the "ZRANGEBYSCORE" command To returns all the elements in the sorted set at 
     /// key with a score between min and max (including elements with score equal to min or max).
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="min">the min score to return</param>
     /// <param name="max">the max score to return</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="withScores">return score or not</param>
     /// <returns>the values</returns>
     public List<SortedSet> ZRangeByScore(string key, double min, double max, bool withScores)
     {
@@ -2552,10 +2552,10 @@ namespace ClientRedisLib
     /// Launch the "ZRANGEBYSCORE" command To returns all the elements in the sorted set at 
     /// key with a score between min and max (including elements with score equal to min or max).
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="min">the min score to return</param>
     /// <param name="max">the max score to return</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="withScores">return score or not</param>
     /// <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
     /// <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
     /// <returns>the values</returns>
@@ -2568,10 +2568,10 @@ namespace ClientRedisLib
     /// Launch the "ZRANGEBYSCORE" command To returns all the elements in the sorted set at 
     /// key with a score between min and max (including elements with score equal to min or max).
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="min">the min score to return</param>
     /// <param name="max">the max score to return</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="withScores">return score or not</param>
     /// <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
     /// <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
     /// <param name="limitArg">Get a Limit offset and count if needed</param>
@@ -2584,7 +2584,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "ZRANK" command To returns the rank of member in the sorted set stored at key, with the scores ordered from low to high
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="member">the member to compute</param>
     /// <returns>the index of the member in the z set (-1 if not found or error)</returns>
     public int ZRank(string key, string member)
@@ -2595,7 +2595,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "ZREM" command To removes the specified members from the sorted set stored at key
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="member">the first member to remove</param>
     /// <param name="members">Other members to remove</param>
     /// <returns>the number of removed members</returns>
@@ -2697,10 +2697,10 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "ZREVRANGE" command To returns the specified range of elements in the sorted (highest to lowest) set stored at key
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="start">the starting index to return (zero based)</param>
-    /// <param name="stop">the stoping index to return (zero based)</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="stop">the last index to return (zero based)</param>
+    /// <param name="withScores">return score or not</param>
     /// <returns>the values</returns>
     public List<SortedSet> ZRevRange(string key, int start, int stop, bool withScores)
     {
@@ -2711,10 +2711,10 @@ namespace ClientRedisLib
     /// Launch the "ZREVRANGEBYSCORE" command To returns all the elements in the sorted set at 
     /// key with a score between min and max (including elements with score equal to min or max).
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="min">the min score to return</param>
     /// <param name="max">the max score to return</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="withScores">return score or not</param>
     /// <returns>the values</returns>
     public List<SortedSet> ZRevRangeByScore(string key, double min, double max, bool withScores)
     {
@@ -2725,10 +2725,10 @@ namespace ClientRedisLib
     /// Launch the "ZREVRANGEBYSCORE" command To returns all the elements in the sorted set at 
     /// key with a score between min and max (including elements with score equal to min or max).
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="min">the min score to return</param>
     /// <param name="max">the max score to return</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="withScores">return score or not</param>
     /// <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
     /// <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
     /// <returns>the values</returns>
@@ -2741,10 +2741,10 @@ namespace ClientRedisLib
     /// Launch the "ZREVRANGEBYSCORE" command To returns all the elements in the sorted set at 
     /// key with a score between min and max (including elements with score equal to min or max).
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="min">the min score to return</param>
     /// <param name="max">the max score to return</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="withScores">return score or not</param>
     /// <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
     /// <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
     /// <param name="limitArg">Get a Limit offset and count if needed</param>
@@ -2757,7 +2757,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "ZREVRANK" command To returns the rank of member in the sorted set stored at key, with the scores ordered from high to low
     /// </summary>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="member">the member to compute</param>
     /// <returns>the index of the member in the z set (-1 if not found or error)</returns>
     public int ZRevRank(string key, string member)
@@ -2768,7 +2768,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "ZSCORE" command To returns the score of member in the sorted set at key.
     /// </summary>
-    /// <param name="key">the key to commpute</param>
+    /// <param name="key">the key to compute</param>
     /// <param name="member">the member to get the score</param>
     /// <returns>the score of the member</returns>
     public double ZScore(string key, string member)
@@ -2799,11 +2799,11 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "ZUNIONSTORE" command To computes the union of numkeys sorted sets given by the specified keys, and stores the result in destination
+    /// Launch the "ZUNIONSTORE" command To computes the union of NUMKEYS sorted sets given by the specified keys, and stores the result in destination
     /// </summary>
     /// <param name="destination">the key to update or create as the result of the operation</param>
-    /// <param name="keys">the list of keys with ponderation weight</param>
-    /// <param name="aggregate">the agregate operation</param>
+    /// <param name="keys">the list of key with their weighting</param>
+    /// <param name="aggregate">the aggregate operation</param>
     /// <returns>the number of values in the result set</returns>
     public int ZUnionStore(string destination, List<string> keys, ZAggregate aggregate)
     {
@@ -2811,11 +2811,11 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "ZUNIONSTORE" command To computes the union of numkeys sorted sets given by the specified keys, and stores the result in destination
+    /// Launch the "ZUNIONSTORE" command To computes the union of NUMKEYS sorted sets given by the specified keys, and stores the result in destination
     /// </summary>
     /// <param name="destination">the key to update or create as the result of the operation</param>
-    /// <param name="keys">the list of keys with ponderation weight</param>
-    /// <param name="aggregate">the agregate operation</param>
+    /// <param name="keys">the list of key with their weighting</param>
+    /// <param name="aggregate">the aggregate operation</param>
     /// <returns>the number of values in the result set</returns>
     public int ZUnionStore(string destination, List<Tuple<string, double>> keys, ZAggregate aggregate)
     {
@@ -2825,9 +2825,9 @@ namespace ClientRedisLib
 
     #region Pub/Sub Methods
     /// <summary>
-    /// Launch the "PSUBSCRIBE" command : to subscribe to different chanels choosed by pattern
+    /// Launch the "PSUBSCRIBE" command : to subscribe to different selected channels by pattern
     /// </summary>
-    /// <param name="fct">Call back method to receive datas</param>
+    /// <param name="fct">Call back method to receive data</param>
     /// <param name="patterns">List of pattern to subscribe</param>
     /// <returns>True if PSubscribe ok</returns>
     public bool PSubscribe(EventSubscribeHandeler fct, params string[] patterns)
@@ -2862,7 +2862,7 @@ namespace ClientRedisLib
     /// Launch the "PUBLISH" command To publish a message on a chanel
     /// </summary>
     /// <param name="channel">The channel where publish the message</param>
-    /// <param name="message">The publised message</param>
+    /// <param name="message">The published message</param>
     /// <returns>the number of clients that received the message</returns>
     public int Publish(string channel, string message)
     {
@@ -2884,7 +2884,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "PUNSUBSCRIBE" command : to unsubscribe to different chanels choosed by pattern
+    /// Launch the "PUNSUBSCRIBE" command : to unsubscribe to different selected channels by pattern
     /// </summary>
     /// <param name="patterns">List of pattern to subscribe</param>
     /// <returns>True if UnSubscribe command correct</returns>
@@ -2894,10 +2894,10 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "SUBSCRIBE" command : to subscribe to different chanels
+    /// Launch the "SUBSCRIBE" command : to subscribe to different channels
     /// </summary>
-    /// <param name="fct">Call back method to receive datas</param>
-    /// <param name="chanels">List of chanel to subscribe</param>
+    /// <param name="fct">Call back method to receive data</param>
+    /// <param name="chanels">List of channel to subscribe</param>
     /// <returns>True if Subscribe ok</returns>
     public bool Subscribe(EventSubscribeHandeler fct, params string[] chanels)
     {
@@ -2928,9 +2928,9 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "UNSUBSCRIBE" command : to unsubscribe to different chanels
+    /// Launch the "UNSUBSCRIBE" command : to unsubscribe to different channels
     /// </summary>
-    /// <param name="chanels">List of chanels to subscribe</param>
+    /// <param name="chanels">List of channels to subscribe</param>
     /// <returns>True if UnSubscribe command correct</returns>
     public bool UnSubscribe(params string[] chanels)
     {
@@ -3038,7 +3038,7 @@ namespace ClientRedisLib
     /// <param name="script">The LUA script</param>
     /// <param name="keys">the array of arguments keys</param>
     /// <param name="args">The array of arguments</param>
-    /// <returns>the reponse depends of the script</returns>
+    /// <returns>the response depends of the script</returns>
     public RedisReponse Eval(string script, string[] keys, string[] args)
     {
       int n = 0;
@@ -3084,10 +3084,10 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "EVALSHA" command To run an LUA script
     /// </summary>
-    /// <param name="sha1">The sha1 key of an LUA script cached</param>
+    /// <param name="sha1">The SHA1 key of an LUA script cached</param>
     /// <param name="keys">the array of arguments keys</param>
     /// <param name="args">The array of arguments</param>
-    /// <returns>the reponse depends of the script</returns>
+    /// <returns>the response depends of the script</returns>
     public RedisReponse EvalSha(string sha1, string[] keys, string[] args)
     {
       int n = 0;
@@ -3121,9 +3121,9 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "SCRIPT EXISTS" command To know if tha sha keys exists
+    /// Launch the "SCRIPT EXISTS" command To know if that SHA keys exists
     /// </summary>
-    /// <param name="sha1">The sha1 keys to test</param>
+    /// <param name="sha1">The SHA1 keys to test</param>
     /// <returns>for each key true if it exists</returns>
     public bool[] ScriptExists(string[] sha1)
     {
@@ -3171,7 +3171,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "SCRIPT FLUSH" command To flush all lua script cache
+    /// Launch the "SCRIPT FLUSH" command To flush all LUA script cache
     /// </summary>
     /// <returns>true if command success</returns>
     public bool ScriptFlush()
@@ -3198,7 +3198,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "SCRIPT KILL" command To flush all lua script cache
+    /// Launch the "SCRIPT KILL" command To flush all LUA script cache
     /// </summary>
     /// <returns>true if command success</returns>
     public bool ScriptKill()
@@ -3228,7 +3228,7 @@ namespace ClientRedisLib
     /// Launch the "SCRIPT LOAD" command To Load a script into the script cache an get the key
     /// </summary>
     /// <param name="script">The LUA script</param>
-    /// <returns>the the sha1 key of this script</returns>
+    /// <returns>the the SHA1 key of this script</returns>
     public string ScriptLoad(string script)
     {
       if (!script.StartsWith("\""))
@@ -3324,7 +3324,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "QUIT" command To close connexion
+    /// Launch the "QUIT" command To close connection
     /// </summary>
     /// <returns>True if Pong, False else</returns>
     public bool Quit()
@@ -3389,7 +3389,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "BgSave" command : Save the db
+    /// Launch the "BGSAVE" command : Save the DB
     /// </summary>
     /// <returns>Redis Server Message</returns>
     public string BgSave()
@@ -3406,7 +3406,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "CLIENT KILL" command : Kill a client connection and get the result
     /// </summary>
-    /// <param name="adresseIp">Client ip to kill</param>
+    /// <param name="adresseIp">Client IP to kill</param>
     /// <returns>true if client killed, false if error see LastErrorText for explain</returns>
     public bool ClientKill(string adresseIp)
     {
@@ -3459,10 +3459,10 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "CONFIG GET [pattern]" command Get the list of server propertie that matching pattern
+    /// Launch the "CONFIG GET [pattern]" command Get the list of server properties that matching pattern
     /// </summary>
     /// <param name="pattern">Pattern to apply : type * for all</param>
-    /// <returns>Dictionary([config], [valeur])</returns>
+    /// <returns>Dictionary([config], [value])</returns>
     public Dictionary<string, string> ConfigGet(string pattern)
     {
       if (string.IsNullOrWhiteSpace(pattern))
@@ -3535,7 +3535,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "DBSIZE" command and get the number of keys in the DB
     /// </summary>
-    /// <returns>Number of keys on the db, -1 if error</returns>
+    /// <returns>Number of keys on the DB, -1 if error</returns>
     public long DbSize()
     {
       RedisReponse answer = this.SendCommand("DBSIZE");
@@ -3604,7 +3604,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "FLUSHALL" command RAZ all datas of all DBs
+    /// Launch the "FLUSHALL" command RAZ all data of all DBs
     /// </summary>
     /// <returns>True if ok, false else</returns>
     public bool FlushAll()
@@ -3619,7 +3619,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "FLUSHDB" command RAZ all datas of the current DB
+    /// Launch the "FLUSHDB" command RAZ all data of the current DB
     /// </summary>
     /// <returns>True if ok, false else</returns>
     public bool FlushDB()
@@ -3674,7 +3674,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Launch the "LASTSAVE" command get the date of the last completed save.
     /// </summary>
-    /// <returns>Number of keys on the db, -1 if error</returns>
+    /// <returns>Number of keys on the DB, -1 if error</returns>
     public DateTime LastSave()
     {
       RedisReponse answer = this.SendCommand("LASTSAVE");
@@ -3690,9 +3690,9 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "MONITOR" command : send datas to the call by the param fct
+    /// Launch the "MONITOR" command : send data to the call by the parameter function
     /// </summary>
-    /// <param name="fct">Call back method to receive datas</param>
+    /// <param name="fct">Call back method to receive data</param>
     /// <returns>True if monitor ok</returns>
     public bool Monitor(EventMonitorHandler fct)
     {
@@ -3719,7 +3719,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "SAVE" command save the server (bloking process)
+    /// Launch the "SAVE" command save the server (blocking process)
     /// </summary>
     /// <returns>True if Ok</returns>
     public bool Save()
@@ -3734,7 +3734,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "SHUTDOWN" command to stop the server no reponse pending
+    /// Launch the "SHUTDOWN" command to stop the server no response pending
     /// </summary>
     /// <param name="opt">Shutdown option (Only from 2.6 version)</param>
     public void Shutdown(ShutdownOption opt)
@@ -3877,9 +3877,9 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "SYNC" command : send datas to the call by the param fct
+    /// Launch the "SYNC" command : send data to the call by the parameter function
     /// </summary>
-    /// <param name="fct">Call back method to receive datas</param>
+    /// <param name="fct">Call back method to receive data</param>
     /// <returns>True if monitor ok</returns>
     public bool Sync(EventMonitorHandler fct)
     {
@@ -3945,7 +3945,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Returns the result of the command Sentinel masters :show a list of monitored masters and their state
     /// </summary>
-    /// <returns>a list of dictionnary masters infos</returns>
+    /// <returns>A list of dictionaries : masters / information</returns>
     public List<Dictionary<string, string>> SentinelMasters()
     {
       RedisReponse answer = this.SendCommand("SENTINEL", "MASTERS");
@@ -3978,7 +3978,7 @@ namespace ClientRedisLib
     /// Returns the result of the command Sentinel slaves : show a list of slaves for this master, and their state
     /// </summary>
     /// <param name="masterKey">Get the master to query</param>
-    /// <returns>a list of dictionnary masters infos</returns>
+    /// <returns>A list of dictionaries : masters / information</returns>
     public List<Dictionary<string, string>> SentinelSlaves(string masterKey)
     {
       RedisReponse answer = this.SendCommand("SENTINEL", "SLAVES", masterKey);
@@ -4008,16 +4008,16 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Returns the result of the command Sentinel is-master-down-by-addr :
+    /// Returns the result of the command Sentinel is master down by address :
     /// return a two elements multi bulk reply where the first is 0 or 1 
     /// (0 if the master with that address is known and is in SDOWN state, 1 otherwise). 
     /// The second element of the reply is the subjective leader for this master, that is, 
-    /// the runid of the Redis Sentinel instance that should perform the failover accordingly 
+    /// the RUNID of the Redis Sentinel instance that should perform the failover accordingly 
     /// to the queried instance
     /// </summary>
-    /// <param name="adresse">the adresse ip of the master to ask</param>
+    /// <param name="adresse">the address IP of the master to ask</param>
     /// <param name="port">the port of the server</param>
-    /// <returns>a pair of infos</returns>
+    /// <returns>a pair of information</returns>
     public KeyValuePair<string, string> SentinelIsMasterDownByAddr(string adresse, int port)
     {
       RedisReponse answer = this.SendCommand("SENTINEL", "is-master-down-by-addr", adresse, port.ToString());
@@ -4036,13 +4036,13 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Returns the result of the command Sentinel get-master-addr-by-name :
-    /// return the ip and port number of the master with that name. 
+    /// Returns the result of the command Sentinel get master address by name :
+    /// return the IP and port number of the master with that name. 
     /// If a failover is in progress or terminated successfully for this master 
     /// it returns the address and port of the promoted slave
     /// </summary>
     /// <param name="masterName">the name of the server to ask</param>
-    /// <returns>the adress and the port</returns>
+    /// <returns>the address and the port</returns>
     public KeyValuePair<string, string> SentinelGetMasterAddrByName(string masterName)
     {
       RedisReponse answer = this.SendCommand("SENTINEL", "get-master-addr-by-name", masterName);
@@ -4068,7 +4068,7 @@ namespace ClientRedisLib
     /// and removes every slave and sentinel already discovered and associated with the master
     /// </summary>
     /// <param name="pattern">the pattern to match server</param>
-    /// <returns>the adress and the port</returns>
+    /// <returns>the address and the port</returns>
     public int SentinelReset(string pattern)
     {
       RedisReponse answer = this.SendCommand("SENTINEL", "reset", pattern);
@@ -4094,10 +4094,10 @@ namespace ClientRedisLib
     /// Launch the "ZRANGE" OR "ZREVRANGE" command To returns the specified range of elements in the sorted set stored at key
     /// </summary>
     /// <param name="keyWord">Must be : "ZRANGE" OR "ZREVRANGE"</param>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="start">the starting index to return (zero based)</param>
-    /// <param name="stop">the stoping index to return (zero based)</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="stop">the last index to return (zero based)</param>
+    /// <param name="withScores">return score or not</param>
     /// <returns>the values</returns>
     private List<SortedSet> ZRangeInternal(string keyWord, string key, int start, int stop, bool withScores)
     {
@@ -4145,10 +4145,10 @@ namespace ClientRedisLib
     /// key with a score between min and max (including elements with score equal to min or max).
     /// </summary>
     /// <param name="keyWord">Must be "ZRANGEBYSCORE" or "ZREVRANGEBYSCORE"</param>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="min">the min score to return</param>
     /// <param name="max">the max score to return</param>
-    /// <param name="withScores">return scrore or not</param>
+    /// <param name="withScores">return score or not</param>
     /// <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
     /// <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
     /// <param name="limitArg">Get a Limit offset and count if needed</param>
@@ -4214,7 +4214,7 @@ namespace ClientRedisLib
     /// Launch the "ZRANK" or "ZREVRANK" command To returns the rank of member in the sorted set stored at key, with the scores ordered from high to low
     /// </summary>
     /// <param name="keyWord">Must be "ZRANK" or "ZREVRANK"</param>
-    /// <param name="key">the key to analyse</param>
+    /// <param name="key">the key to analyze</param>
     /// <param name="member">the member to compute</param>
     /// <returns>the index of the member in the z set (-1 if not found or error)</returns>
     private int ZRankInternal(string keyWord, string key, string member)
@@ -4239,12 +4239,12 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "ZINTERSTORE" or "ZUNIONSTORE" command To computes the union of numkeys sorted sets given by the specified keys, and stores the result in destination
+    /// Launch the "ZINTERSTORE" or "ZUNIONSTORE" command To computes the union of NUMKEYS sorted sets given by the specified keys, and stores the result in destination
     /// </summary>
     /// <param name="keyWord">must be "ZINTERSTORE" or "ZUNIONSTORE"</param>
     /// <param name="destination">the key to update or create as the result of the operation</param>
-    /// <param name="keys">the list of keys with ponderation weight</param>
-    /// <param name="aggregate">the agregate operation</param>
+    /// <param name="keys">the list of key with their weighting</param>
+    /// <param name="aggregate">the aggregate operation</param>
     /// <returns>the number of values in the result set</returns>
     private int ZOperationStoreInternal(string keyWord, string destination, List<string> keys, ZAggregate aggregate)
     {
@@ -4285,12 +4285,12 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Launch the "ZINTERSTORE" or "ZUNIONSTORE" command To computes the union of numkeys sorted sets given by the specified keys, and stores the result in destination
+    /// Launch the "ZINTERSTORE" or "ZUNIONSTORE" command To computes the union of NUMKEYS sorted sets given by the specified keys, and stores the result in destination
     /// </summary>
     /// <param name="keyWord">must be "ZINTERSTORE" or "ZUNIONSTORE"</param>
     /// <param name="destination">the key to update or create as the result of the operation</param>
-    /// <param name="keys">the list of keys with ponderation weight</param>
-    /// <param name="aggregate">the agregate operation</param>
+    /// <param name="keys">the list of key with their weighting</param>
+    /// <param name="aggregate">the aggregate operation</param>
     /// <returns>the number of values in the result set</returns>
     private int ZOperationStoreInternal(string keyWord, string destination, List<Tuple<string, double>> keys, ZAggregate aggregate)
     {

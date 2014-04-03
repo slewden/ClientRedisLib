@@ -21,17 +21,17 @@ namespace ClientRedisLib.RedisClass
     NoAnswerReceived =  -1,
 
     /// <summary>
-    /// Error during the analyse of the answer
+    /// Error during the analyze of the answer
     /// </summary>
     CommunicationError = -2,
 
     /// <summary>
-    /// Command DEBUGSEGFAULT send ==> no response can comme yet !
+    /// Command DEBUGSEGFAULT send ==> no answer can not come now !
     /// </summary>
     ServerDown = -3,
 
     /// <summary>
-    /// Unknowed response
+    /// Unknown response
     /// </summary>
     UnknowError = -4,
 

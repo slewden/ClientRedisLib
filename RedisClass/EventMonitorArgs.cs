@@ -11,10 +11,11 @@ namespace ClientRedisLib.RedisClass
   public class EventMonitorArgs
   {
     /// <summary>
+    /// Initializes a new instance of the <see cref="EventMonitorArgs" /> class.
     /// Default constructor
     /// </summary>
     /// <param name="message">Message receive to parse</param>
-    /// <param name="cancel">Return param to say when monitoring stop</param>
+    /// <param name="cancel">Return the parameters to tell when to stop monitoring</param>
     public EventMonitorArgs(string message, bool cancel)
     {
       this.CancelLoop = cancel;
@@ -22,6 +23,7 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="EventMonitorArgs" /> class.
     /// Internal constructor for insert Trace management command
     /// </summary>
     /// <param name="command">The text of the command trace</param>
@@ -55,7 +57,7 @@ namespace ClientRedisLib.RedisClass
     public string Command { get; private set; }
 
     /// <summary>
-    /// IP adresse + port of the client if present (else string.Empty)
+    /// IP address + port of the client if present (else string.Empty)
     /// </summary>
     public string IPAdress { get; private set; }
 
@@ -65,17 +67,17 @@ namespace ClientRedisLib.RedisClass
     public string Port { get; private set; }
     
     /// <summary>
-    /// Get an Event Montior : For Tace purpose
+    /// Get an Event Monitor : For trace purpose
     /// </summary>
     /// <param name="command">The trace action like "Trace start", "Trace Pause" or "Trace stop"</param>
-    /// <returns>an Event Montior</returns>
+    /// <returns>an event monitor</returns>
     public static EventMonitorArgs Trace(string command)
     {
       return new EventMonitorArgs(command);
     }
 
     /// <summary>
-    /// String to display informations
+    /// String to display information
     /// </summary>
     /// <returns>The string</returns>
     public override string ToString()

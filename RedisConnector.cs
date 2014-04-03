@@ -41,7 +41,7 @@ namespace ClientRedisLib
     private const int MINDBID = 0;
 
     /// <summary>
-    /// Redis db Id max
+    /// Redis DB Id max
     /// </summary>
     private const int MAXDBID = 15;
 
@@ -56,12 +56,12 @@ namespace ClientRedisLib
     private const string CSTERRORNAN = "Answer return NAN";
 
     /// <summary>
-    /// Value of then 2.4.xx version calculate to determinate the apropriate option
+    /// Value of then 2.4.xx version calculate to determinate the appropriate option
     /// </summary>
     private const int SERVER24 = 204;
 
     /// <summary>
-    /// Value of then 2.6.xx version calculate to determinate the apropriate option
+    /// Value of then 2.6.xx version calculate to determinate the appropriate option
     /// </summary>
     private const int SERVER26 = 206;
 
@@ -78,7 +78,7 @@ namespace ClientRedisLib
 
     #region private member
     /// <summary>
-    /// Current db ID
+    /// Current DB ID
     /// </summary>
     private int db = RedisConnector.DEFAULTDB;
 
@@ -89,17 +89,17 @@ namespace ClientRedisLib
 
     #region Soket properties
     /// <summary>
-    /// Connexion IP Soket
+    /// Connection IP socket
     /// </summary>
     private Socket socket;
 
     /// <summary>
-    /// Port number for the client connexion.
+    /// Port number for the client connection.
     /// </summary>
     private int clientPort;
 
     /// <summary>
-    /// Read buffer associated with soket
+    /// Read buffer associated with socket
     /// </summary>
     private BufferedStream bufferStream = null;
 
@@ -124,7 +124,7 @@ namespace ClientRedisLib
     private long lastConnectedAtTimestamp;
     
     /// <summary>
-    /// Connection event wainting envent when timeOut is set
+    /// Connection event waiting event when timeOut is set
     /// </summary>
     private ManualResetEvent connectDone = new ManualResetEvent(false);
     #endregion
@@ -135,13 +135,14 @@ namespace ClientRedisLib
     private AsyncCallback processMonitorCallBack;
 
     /// <summary>
-    /// Call back for subscribe and psubscribe methods
+    /// Call back for SUBSCRIBE and PSUBSCRIBE methods
     /// </summary>
     private AsyncCallback processSubscribeCallBack;
     #endregion
 
     #region Constructors
     /// <summary>
+    /// Initializes a new instance of the <see cref="RedisConnector" /> class.
     /// Constructor with default port and no password
     /// </summary>
     /// <param name="host">Server Redis Host</param>
@@ -151,6 +152,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="RedisConnector" /> class.
     /// Constructor with no password
     /// </summary>
     /// <param name="host">Server Redis Host</param>
@@ -161,6 +163,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
+    /// Initializes a new instance of the <see cref="RedisConnector" /> class.
     /// Fully qualified constructor
     /// </summary>
     /// <param name="host">Server Redis Host</param>
@@ -210,12 +213,12 @@ namespace ClientRedisLib
     public string LastCommandText { get; private set; }
 
     /// <summary>
-    /// Socket send timeout for fine tunning (default set to -1)
+    /// Socket send timeout for fine tuning (default set to -1)
     /// </summary>
     public int SendTimeout { get; set; }
 
     /// <summary>
-    /// Socket receive timeout for fine tunning (default set to -1)
+    /// Socket receive timeout for fine tuning (default set to -1)
     /// </summary>
     public int ReceiveTimeout { get; set; }
 
@@ -272,11 +275,11 @@ namespace ClientRedisLib
 
     #region Static methods : Utilities
     /// <summary>
-    /// Return a byte array for a char and arg lenght
+    /// Return a byte array for a char and argument length
     /// </summary>
     /// <param name="cmdPrefix">Prefix of the command * or $</param>
     /// <param name="lenght">Number of parameters or length</param>
-    /// <returns>the datas</returns>
+    /// <returns>the data</returns>
     public static byte[] GetCmdBytes(char cmdPrefix, int lenght)
     {
       string strLines = lenght.ToString();
@@ -302,7 +305,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Convert UTF8 to String
     /// </summary>
-    /// <param name="bytes">the datas</param>
+    /// <param name="bytes">the data array</param>
     /// <returns>the string</returns>
     public static string GetStringFromUtf8Bytes(byte[] bytes)
     {
@@ -329,7 +332,7 @@ namespace ClientRedisLib
     /// Convert string To UTF8
     /// </summary>
     /// <param name="value">the string</param>
-    /// <returns>the datas</returns>
+    /// <returns>the data</returns>
     public static byte[] GetBytesUtf8FromString(string value)
     {
       return Encoding.UTF8.GetBytes(value);
@@ -338,7 +341,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Indicate if the socket is connected
     /// </summary>
-    /// <param name="socket">the soket to test</param>
+    /// <param name="socket">the socket to test</param>
     /// <returns>True is is connected</returns>
     public static bool IsConnected(Socket socket)
     {
@@ -401,7 +404,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Convert a duration From MilliSeconds to TimeSpan
+    /// Convert a duration From milliseconds to TimeSpan
     /// </summary>
     /// <param name="value">duration in milliseconds</param>
     /// <returns>the TimeSpan</returns>
@@ -471,7 +474,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Add the command string to the begining of the array argument
+    /// Add the command string to the beginning of the array argument
     /// </summary>
     /// <param name="command">string to add in first place</param>
     /// <param name="arguments">array of strings</param>
@@ -489,7 +492,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Add the command string to the begining of the array argument
+    /// Add the command string to the beginning of the array argument
     /// </summary>
     /// <param name="arguments">array of array of strings</param>
     /// <returns>One array with command first and arguments after</returns>
@@ -515,7 +518,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Add the command string to the begining of the array argument
+    /// Add the command string to the beginning of the array argument
     /// </summary>
     /// <param name="arguments">array of strings</param>
     /// <param name="fieldValue">first tuple</param>
@@ -543,10 +546,10 @@ namespace ClientRedisLib
     }
     
     /// <summary>
-    /// Add the command string to the begining of the array argument
+    /// Add the command string to the beginning of the array argument
     /// </summary>
+    /// <param name="cmd">the command</param>
     /// <param name="arguments">array of strings</param>
-    /// <param name="fieldValue">first tuple</param>
     /// <param name="fieldsValues">array of Tuple key value</param>
     /// <returns>One array with command first and arguments after</returns>
     public static string[] MergeStringBeforeList(string cmd, string arguments, List<Tuple<string, string>> fieldsValues)
@@ -567,7 +570,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Add the command string to the begining of the array argument
+    /// Add the command string to the beginning of the array argument
     /// </summary>
     /// <param name="arguments">array of strings</param>
     /// <param name="fieldValue">first SortedSet</param>
@@ -607,7 +610,7 @@ namespace ClientRedisLib
 
     #region IReadUnifiedProtocol Methods
     /// <summary>
-    /// Read a bit from this.bStram
+    /// Read a bit from this BSTREAM
     /// </summary>
     /// <returns>the byte</returns>
     public int ReadByte()
@@ -668,7 +671,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Read lenght car and place it in retbuf return the number of char in retbuf
+    /// Read length char and place it in RETBUF return the number of char in RETBUF
     /// </summary>
     /// <param name="retbuf">Read buffer to fill</param>
     /// <param name="lenght">Number of char to fill</param>
@@ -742,7 +745,7 @@ namespace ClientRedisLib
     /// Compute the server version from a string like "2.6.5.12" : 
     /// the only 2 first digits are used
     /// </summary>
-    /// <param name="vers">The number of the version [princ] * 100 + [second]</param>
+    /// <param name="vers">The number of the version [principal] * 100 + [second]</param>
     protected void ComputeVersion(string vers)
     {
       if (!string.IsNullOrWhiteSpace(vers))
@@ -764,7 +767,7 @@ namespace ClientRedisLib
 
     #region Connection / disconnection
     /// <summary>
-    /// Check server connection and connecte if needed
+    /// Check the connection to the server and connects if necessary
     /// </summary>
     /// <returns>Connected or not</returns>
     protected bool AssertConnectedSocket()
@@ -806,7 +809,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Reconnect after an idle time or loose socket connexion
+    /// Reconnect after an idle time or loose socket connection
     /// </summary>
     /// <returns>Connected or not</returns>
     protected bool Reconnect()
@@ -883,7 +886,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Call back connection when a time out exists
     /// </summary>
-    /// <param name="ar">Asynch soket argument</param>
+    /// <param name="ar">asynchronous argument</param>
     protected void ConnectCallBack(IAsyncResult ar)
     {
       try
@@ -901,7 +904,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Close the old connexion is exists
+    /// Close the old connection is exists
     /// </summary>
     protected void SafeConnectionClose()
     {
@@ -938,7 +941,7 @@ namespace ClientRedisLib
     /// <summary>
     /// Send command an arguments and get response
     /// </summary>
-    /// <param name="arguments">Commande and arguments</param>
+    /// <param name="arguments">Command and arguments</param>
     /// <returns>the response</returns>
     protected RedisReponse SendCommand(params string[] arguments)
     {
@@ -989,7 +992,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Process sendind a command
+    /// Process sending a command
     /// </summary>
     /// <param name="arguments">Command and arguments</param>
     /// <returns>True is success, if false lastError is updated</returns>
@@ -1019,7 +1022,7 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Write something like *[nb param]\r\n$[length param 1]\r\n[param 1]\r\n$[length param 2]\r\n[param 2]\r\n...
+    /// Write something like *[number parameter]\r\n$[length parameter 1]\r\n[parameter 1]\r\n$[length parameter 2]\r\n[parameter 2]\r\n...
     /// </summary>
     /// <param name="arguments">Data to write</param>
     protected void WriteToSendBuffer(string[] arguments)
@@ -1083,9 +1086,9 @@ namespace ClientRedisLib
 
     #region Unified Protocol Read
     /// <summary>
-    /// Get datas from bStream and get Reponse
+    /// Get data from BSTREAM and get response
     /// </summary>
-    /// <returns>the reponse</returns>
+    /// <returns>the response</returns>
     protected RedisReponse ReadAnswer()
     {
       return UnifiedProtocolReader.Read(this);
@@ -1094,9 +1097,9 @@ namespace ClientRedisLib
 
     #region Spécific methods Call backs for different functions
     /// <summary>
-    /// Asynch method to Monitor function
+    /// asynchronous method to Monitor function
     /// </summary>
-    /// <param name="result">IAsynch info</param>
+    /// <param name="result">asynchronous info</param>
     protected void ProcessMonitor(IAsyncResult result)
     {
       MonitorAsyncParam param = result.AsyncState as MonitorAsyncParam;
@@ -1119,9 +1122,9 @@ namespace ClientRedisLib
     }
 
     /// <summary>
-    /// Asynch method to Subscribe/publish mechanism
+    /// asynchronous method to Subscribe/publish mechanism
     /// </summary>
-    /// <param name="result">IAsynch info</param>
+    /// <param name="result">asynchronous info</param>
     protected void ProcessPublish(IAsyncResult result)
     {
       PublishAsyncParam param = result.AsyncState as PublishAsyncParam;
@@ -1160,13 +1163,13 @@ namespace ClientRedisLib
     #region Useful functions
     #region Conversions String To Dictionary
     /// <summary>
-    /// Split source from model : property1[keyvalueSplitter]value1[propertySplitter]property2[keyvalueSplitter]value2... 
+    /// Split source from model : property1[key value Splitter]value1[propertySplitter]property2[key value Splitter]value2... 
     /// To Dictionary([key], [value])
     /// </summary>
     /// <param name="source">string to split</param>
     /// <param name="propertySplitter">splitter char between properties</param>
     /// <param name="keyvalueSplitter">splitter char between key and value</param>
-    /// <returns>the datas</returns>
+    /// <returns>the data</returns>
     protected Dictionary<string, string> ExtractFromString(string source, char propertySplitter, char keyvalueSplitter)
     {
       Dictionary<string, string> result = new Dictionary<string, string>();

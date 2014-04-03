@@ -7,12 +7,13 @@ namespace ClientRedisLib.RedisClass
   /// The TIME command returns the current server time as a two items lists : 
   /// a Unix timestamp and the amount of microseconds already elapsed in the 
   /// current second. 
-  /// Basically the interface is very similar to the one of the gettimeofday system call.
+  /// Basically the interface is very similar to the one of the get time of day system call.
   /// </summary>
   public class PrecisionTime
   {
     /// <summary>
-    /// The constructor : parse original datas to cast values
+    /// Initializes a new instance of the <see cref="PrecisionTime" /> class.
+    /// The constructor : parse original data to cast values
     /// </summary>
     /// <param name="date">The date</param>
     /// <param name="microSecond">The duration in micro seconds</param>

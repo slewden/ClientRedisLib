@@ -16,7 +16,7 @@
     NOSAVE,
 
     /// <summary>
-    /// Default option : no param
+    /// Default option : no parameter
     /// </summary>
     None
   }

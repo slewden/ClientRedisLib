@@ -3,7 +3,7 @@
 namespace ClientRedisLib.RedisClass
 {
   /// <summary>
-  /// Parameters for asynchrone call of then MONITOR REDIS server method
+  /// Parameters for asynchronous call of then MONITOR REDIS server method
   /// </summary>
   public class PublishAsyncParam : IReadUnifiedProtocol
   {
@@ -23,6 +23,7 @@ namespace ClientRedisLib.RedisClass
     private System.IO.BufferedStream bufferedStream;
   
     /// <summary>
+    /// Initializes a new instance of the <see cref="PublishAsyncParam" /> class.
     /// Default Constructor
     /// </summary>
     /// <param name="bufferedStream">RedisConnector stream</param>
@@ -141,7 +142,7 @@ namespace ClientRedisLib.RedisClass
     }
 
     /// <summary>
-    /// Read lenght car and place it in retbuf return the number of char in retbuf
+    /// Read length car and place it in RETBUF return the number of char in RETBUF
     /// </summary>
     /// <param name="retbuf">Read buffer to fill</param>
     /// <param name="lenght">Number of char to fill</param>
@@ -178,8 +179,8 @@ namespace ClientRedisLib.RedisClass
     /// <summary>
     /// Create a custom error message
     /// </summary>
-    /// <param name="errorMsg">input error messagase</param>
-    /// <returns>output error messagase</returns>
+    /// <param name="errorMsg">input error message</param>
+    /// <returns>output error message</returns>
     public string MakeErrorText(string errorMsg)
     {
       return errorMsg;
