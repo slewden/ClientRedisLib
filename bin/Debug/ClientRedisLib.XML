@@ -1,0 +1,2588 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ClientRedisLib</name>
+    </assembly>
+    <members>
+        <member name="T:ClientRedisLib.RedisClass.BitOperation">
+            <summary>
+            Redis Bitop operations
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.BitOperation.AND">
+            <summary>
+            Combine bit with an AND
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.BitOperation.OR">
+            <summary>
+            Combine bit with an OR
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.BitOperation.XOR">
+            <summary>
+            Combine bit with an XOR
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.BitOperation.NOT">
+            <summary>
+            Combine bit with an NOT
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.EErrorCode">
+            <summary>
+            Unified protocol error
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.EErrorCode.None">
+            <summary>
+            No error
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.EErrorCode.NoAnswerReceived">
+            <summary>
+            Partial answer received
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.EErrorCode.CommunicationError">
+            <summary>
+            Error during the analyse of the answer
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.EErrorCode.ServerDown">
+            <summary>
+            Command DEBUGSEGFAULT send ==> no response can comme yet !
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.EErrorCode.UnknowError">
+            <summary>
+            Unknowed response
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.EErrorCode.ServerError">
+            <summary>
+            An error is received from the server
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.EventMonitorArgs">
+            <summary>
+            This class store and type a row send by the MONITOR (or SYNC !) REDIS server command
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.EventMonitorArgs.#ctor(System.String,System.Boolean)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="message">Message receive to parse</param>
+            <param name="cancel">Return param to say when monitoring stop</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.EventMonitorArgs.#ctor(System.String)">
+            <summary>
+            Internal constructor for insert Trace management command
+            </summary>
+            <param name="command">The text of the command trace</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.EventMonitorArgs.Trace(System.String)">
+            <summary>
+            Get an Event Montior : For Tace purpose
+            </summary>
+            <param name="command">The trace action like "Trace start", "Trace Pause" or "Trace stop"</param>
+            <returns>an Event Montior</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.EventMonitorArgs.ToString">
+            <summary>
+            String to display informations
+            </summary>
+            <returns>The string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.EventMonitorArgs.AnalyseMessage(System.String)">
+            <summary>
+            From the string receive fill all properties
+            </summary>
+            <param name="message">the string receive by the Redis Server</param>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventMonitorArgs.CancelLoop">
+            <summary>
+            Property set to true by the final client to say stop monitoring
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventMonitorArgs.Date">
+            <summary>
+            Date of the monitor event (DateTime.MinValue if not present)
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventMonitorArgs.BaseId">
+            <summary>
+            the database Id (if present else -1)
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventMonitorArgs.Command">
+            <summary>
+            All command and parameters
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventMonitorArgs.IPAdress">
+            <summary>
+            IP adresse + port of the client if present (else string.Empty)
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventMonitorArgs.Port">
+            <summary>
+            The port used by the client if present (else string.Empty)
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.EventSubscribeArgs">
+            <summary>
+            This class store all published informations
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.EventSubscribeArgs.#ctor(System.String[])">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="informations">arrys of the informations returne by subcribe or psubscribe commands</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.EventSubscribeArgs.ToString">
+            <summary>
+            Get the string that reprents this object
+            </summary>
+            <returns>the string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.EventSubscribeArgs.AnalyseMessage(System.String[])">
+            <summary>
+            Analyse the array to fill this object
+            </summary>
+            <param name="informations">arrys of the informations returne by subcribe or psubscribe commands</param>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventSubscribeArgs.MessageType">
+            <summary>
+            Contains "message" or "pmessage" 
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventSubscribeArgs.Pattern">
+            <summary>
+            Pattern use if Psubscribe is used
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventSubscribeArgs.Chanel">
+            <summary>
+            Chanel use to publish
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventSubscribeArgs.Message">
+            <summary>
+            Publised message
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventSubscribeArgs.SubScribeIndex">
+            <summary>
+            Explain if the message is the answer of the subscribe command 
+            or a real message receive after a publish on the Redis server
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.EventSubscribeArgs.CanQuit">
+            <summary>
+            Say if the subscribe mode can be quitted
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.EventMonitorHandler">
+            <summary>
+            Delagate to Monitor method call back
+            </summary>
+            <param name="e">All information needed to analyse MONITOR informations</param>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.EventSubscribeHandeler">
+            <summary>
+            Delegate to Subscribe methods call back
+            </summary>
+            <param name="e">All informations needed to analyse a published information</param>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.IReadUnifiedProtocol">
+            <summary>
+            Interface to make analyse of unified protocol work
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.IReadUnifiedProtocol.ReadByte">
+            <summary>
+            Read a bit
+            </summary>
+            <returns>the byte</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.IReadUnifiedProtocol.ReadLine">
+            <summary>
+            Read a line. A line end with \n
+            \r are filtered by this method
+            </summary>
+            <returns>The read string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.IReadUnifiedProtocol.ReadAny(System.Byte[]@,System.Int32)">
+            <summary>
+            Read lenght car and place it in retbuf return the number of char in retbuf
+            </summary>
+            <param name="retbuf">Read buffer to fill</param>
+            <param name="lenght">Number of char to fill</param>
+            <returns>Number of char filled</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.IReadUnifiedProtocol.MakeErrorText(System.String)">
+            <summary>
+            Construct an error message
+            </summary>
+            <param name="errorMsg">The message to format</param>
+            <returns>Formatted Text</returns>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.IReadUnifiedProtocol.LastErrorText">
+            <summary>
+            Return the readxx last error
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.Limit">
+            <summary>
+            Argumet of SORT command in REDIS to limit returns
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.Limit.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Default class constructor
+            </summary>
+            <param name="offset">the offset to set</param>
+            <param name="count">the count elements</param>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.Limit.Offset">
+            <summary>
+            Get or Set the offset witch is the number of elements to skip
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.Limit.Count">
+            <summary>
+            Get or Set the count witch is the number of elements to return
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.Limit.IsEmpty">
+            <summary>
+            Get true if the object is empty or not correctly filled
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.MonitorAsyncParam">
+            <summary>
+            Parameters for asynchrone call of then MONITOR REDIS server method
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.MonitorAsyncParam.resultCommand">
+            <summary>
+            store the receive line
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.MonitorAsyncParam.bufferedStream">
+            <summary>
+            Redis Connector buffer
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.MonitorAsyncParam.#ctor(System.IO.BufferedStream,ClientRedisLib.RedisClass.EventMonitorHandler)">
+            <summary>
+            Default Constructor
+            </summary>
+            <param name="bufferedStream">RedisConnector stream</param>
+            <param name="callBack">Call back method for notify the principal thread</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.MonitorAsyncParam.AddBytes(System.Int32)">
+            <summary>
+            Add info to the receive line
+            </summary>
+            <param name="bytesRead">number of ready byte to read</param>
+            <returns>the string read if it end with \n</returns>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.MonitorAsyncParam.Buffer">
+            <summary>
+            Read buffer
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.MonitorAsyncParam.CallBack">
+            <summary>
+            Call back method to call
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.PrecisionTime">
+            <summary>
+            Store the time info return by the command TIME on a REDIS server
+            The TIME command returns the current server time as a two items lists : 
+            a Unix timestamp and the amount of microseconds already elapsed in the 
+            current second. 
+            Basically the interface is very similar to the one of the gettimeofday system call.
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.PrecisionTime.#ctor(System.String,System.String)">
+            <summary>
+            The constructor : parse original datas to cast values
+            </summary>
+            <param name="date">The date</param>
+            <param name="microSecond">The duration in micro seconds</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.PrecisionTime.ToString">
+            <summary>
+            Return the string of this object
+            </summary>
+            <returns>the string</returns>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.PrecisionTime.Empty">
+            <summary>
+            Get an empty PrecisionTime : use to return a error
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.PrecisionTime.Now">
+            <summary>
+            Get an PrecisionTime with the current DateTime : used on Server before the 2.6 version who don't have the TIME command
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.PrecisionTime.Date">
+            <summary>
+            The date
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.PrecisionTime.MicroSeconds">
+            <summary>
+            The duration in micro seconds
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.PrecisionTime.IsEmpty">
+            <summary>
+            Indicate if the object is filled or not
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.PublishAsyncParam">
+            <summary>
+            Parameters for asynchrone call of then MONITOR REDIS server method
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.PublishAsyncParam.resultCommand">
+            <summary>
+            store the receive line
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.PublishAsyncParam.indexer">
+            <summary>
+            Current position in resultCommand;
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.PublishAsyncParam.bufferedStream">
+            <summary>
+            Redis Connector buffer
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.PublishAsyncParam.#ctor(System.IO.BufferedStream,ClientRedisLib.RedisClass.EventSubscribeHandeler)">
+            <summary>
+            Default Constructor
+            </summary>
+            <param name="bufferedStream">RedisConnector stream</param>
+            <param name="callBack">Call back method for notify the principal thread</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.PublishAsyncParam.AddBytes(System.Int32)">
+            <summary>
+            Add info to the receive line
+            </summary>
+            <param name="bytesRead">number of ready byte to read</param>
+            <returns>the string read if it end with \n</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.PublishAsyncParam.ReadByte">
+            <summary>
+            Read a bit from this.Buffer
+            </summary>
+            <returns>the byte</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.PublishAsyncParam.ReadLine">
+            <summary>
+            Read a line from this.buffer a line end with \n
+            \r are filtered
+            </summary>
+            <returns>The read string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.PublishAsyncParam.ReadAny(System.Byte[]@,System.Int32)">
+            <summary>
+            Read lenght car and place it in retbuf return the number of char in retbuf
+            </summary>
+            <param name="retbuf">Read buffer to fill</param>
+            <param name="lenght">Number of char to fill</param>
+            <returns>Number of char filled</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.PublishAsyncParam.MakeErrorText(System.String)">
+            <summary>
+            Create a custom error message
+            </summary>
+            <param name="errorMsg">input error messagase</param>
+            <returns>output error messagase</returns>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.PublishAsyncParam.LastErrorText">
+            <summary>
+            return the la error read message
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.PublishAsyncParam.Buffer">
+            <summary>
+            Read buffer
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.PublishAsyncParam.CallBack">
+            <summary>
+            Call back method to call
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.RedisReponse">
+            <summary>
+            Base StateBag to store every REDIS answer
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.#ctor(System.Boolean)">
+            <summary>
+            Internal constructor
+            </summary>
+            <param name="status">True if no error, false else</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.GetEmpty">
+            <summary>
+            Get an empty reponse
+            </summary>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.GetEmptyList">
+            <summary>
+            Get an empty list Reponse
+            </summary>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.GetDatas(System.Collections.Generic.List{System.String})">
+            <summary>
+            Get a list reponse
+            </summary>
+            <param name="datas">the list of datas</param>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.GetError(System.String,ClientRedisLib.RedisClass.EErrorCode)">
+            <summary>
+            Get an error reponse
+            </summary>
+            <param name="value">the error message</param>
+            <param name="code">the error code</param>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.GetLine(System.String)">
+            <summary>
+            Get an unique reponse
+            </summary>
+            <param name="value">the message</param>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.GetNumber(System.String)">
+            <summary>
+            Get a number reponse
+            </summary>
+            <param name="value">the number</param>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.GetPipelinning">
+            <summary>
+            Get a pipeline reponse
+            </summary>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.MergeData(System.String)">
+            <summary>
+            Make a string from Datas
+            </summary>
+            <param name="splitter">char to separate every data</param>
+            <returns>the string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.RedisReponse.ToString">
+            <summary>
+            string to draw the answer
+            </summary>
+            <returns>The string</returns>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.RedisReponse.Success">
+            <summary>
+            the reponse is an error ==> Errormessage will be filled
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.RedisReponse.ErrorMessage">
+            <summary>
+            Describe the error filled only if Succes = false
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.RedisReponse.ErrorCode">
+            <summary>
+            The code of the error
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.RedisReponse.Line">
+            <summary>
+            if the answer is a single line : here it is,  else the value is null
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.RedisReponse.Number">
+            <summary>
+            If the answer is a number : here it is, else the value is double.NaN
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.RedisReponse.Datas">
+            <summary>
+            If the answer is multiple line info : here it is,  else the value is null 
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.RedisReponse.Pipelininng">
+            <summary>
+            indicate when we are in pipeline mode
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.ShutdownOption">
+            <summary>
+            Redis command SHUTDOWN arguments
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.ShutdownOption.SAVE">
+            <summary>
+            Force save before shutdown
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.ShutdownOption.NOSAVE">
+            <summary>
+            Shutdown without saving even if needed
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.ShutdownOption.None">
+            <summary>
+            Default option : no param
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.SlowLogData">
+            <summary>
+            Class to manipulate SLOWLOG Data informations 
+            SlowLog are the most slow command run on the REDIS server
+            this class expose all properties
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.SlowLogData.#ctor(System.String)">
+            <summary>
+            Fill all properties from de receive datas for one SlowLog
+            </summary>
+            <param name="line">Line from RedisConnector</param>
+        </member>
+        <member name="M:ClientRedisLib.SlowLogData.ToString">
+            <summary>
+            Return the display string
+            </summary>
+            <returns>the string</returns>
+        </member>
+        <member name="P:ClientRedisLib.SlowLogData.Index">
+            <summary>
+            The index of the SlowLog
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.SlowLogData.Date">
+            <summary>
+            The event date
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.SlowLogData.Duration">
+            <summary>
+            The duration
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.SlowLogData.CommandLine">
+            <summary>
+            The command line
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.SortedSet">
+            <summary>
+            Class to manipulate a sorted set Ie : a score and a member
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.SortedSet.#ctor(System.Double,System.String)">
+            <summary>
+            Initialize an new sorted set
+            </summary>
+            <param name="score">the score</param>
+            <param name="member">the member</param>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.SortedSet.Score">
+            <summary>
+            The score to sort
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisClass.SortedSet.Member">
+            <summary>
+            The sorted member
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.SortOrder">
+            <summary>
+            Indicate the sort orders
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.SortOrder.ASC">
+            <summary>
+            Ascending sort
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.SortOrder.DESC">
+            <summary>
+            Descending sort
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.SortOrder.None">
+            <summary>
+            No sort information
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.UnifiedProtocolReader">
+            <summary>
+            Class to analyse the unified protocol and fill a Redisreponse
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.UnifiedProtocolReader.Read(ClientRedisLib.RedisClass.IReadUnifiedProtocol)">
+            <summary>
+            The read method
+            </summary>
+            <param name="from">object that can read on a flux</param>
+            <returns>the RedisReponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.UnifiedProtocolReader.ReadAnErrorReply(ClientRedisLib.RedisClass.IReadUnifiedProtocol)">
+            <summary>
+            Return a error reponse
+            </summary>
+            <param name="from">object that can read on a flux</param>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.UnifiedProtocolReader.ReadABulkReply(ClientRedisLib.RedisClass.IReadUnifiedProtocol)">
+            <summary>
+            Read this reponse format   $[lenght]\r\n[lenght Datas]\r\n 
+            </summary>
+            <param name="from">object that can read on a flux</param>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.UnifiedProtocolReader.ReadAMultiBulkReply(ClientRedisLib.RedisClass.IReadUnifiedProtocol,System.Int32)">
+            <summary>
+            Read a multi-bulk reply *[nb param]\r\n[Bulk reply] * nb times
+            </summary>
+            <param name="from">object that can read on a flux</param>
+            <param name="level">Recursivity level</param>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.UnifiedProtocolReader.ReadALineReply(ClientRedisLib.RedisClass.IReadUnifiedProtocol)">
+            <summary>
+            Read a reponse line
+            </summary>
+            <param name="from">object that can read on a flux</param>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisClass.UnifiedProtocolReader.ReadANumberReply(ClientRedisLib.RedisClass.IReadUnifiedProtocol)">
+            <summary>
+            Read a reponse number
+            </summary>
+            <param name="from">object that can read on a flux</param>
+            <returns>An answer with the number</returns>
+        </member>
+        <member name="T:ClientRedisLib.RedisClass.ZAggregate">
+            <summary>
+            ZUNIONSTORE or ZINTERSTORE aggregate argument values
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.ZAggregate.Default">
+            <summary>
+            Apply the default aggregate fonction (the sum fonction)
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.ZAggregate.Sum">
+            <summary>
+            Sum the scores
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.ZAggregate.Min">
+            <summary>
+            Get the minimum of the scores
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisClass.ZAggregate.Max">
+            <summary>
+            Get the maximimum of the scores
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisConnector">
+            <summary>
+            A client for Redis Server
+            Principal File.
+            Public Methods mapping Server REDIS commands are in RedisConnector2.cs
+            </summary>
+            <summary>
+            A client for Redis Server
+            Public Methods mapping Server REDIS commands are in RedisConnector2.cs
+            All principals methods are in the RedisConnector.cs
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.DEFAULTDB">
+            <summary>
+            Redis default DB id
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.DEFAULTPORT">
+            <summary>
+            Redis Server Default Socket port
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.DEFAULTHOST">
+            <summary>
+            Redis Server Host name
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.MINDBID">
+            <summary>
+            Redis DB ID min
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.MAXDBID">
+            <summary>
+            Redis db Id max
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.NOTIMPLEMENTEDINTHISVERSION">
+            <summary>
+            Add to all command line when the server in not in the good version
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.CSTERRORNAN">
+            <summary>
+            Problem when getting Number error message
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.SERVER24">
+            <summary>
+            Value of then 2.4.xx version calculate to determinate the apropriate option
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.SERVER26">
+            <summary>
+            Value of then 2.6.xx version calculate to determinate the apropriate option
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.endOfLine">
+            <summary>
+            End of line for commands
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.idleTimeOutSecs">
+            <summary>
+            Idle time out : default on redis is 300
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.db">
+            <summary>
+            Current db ID
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.serverVersion">
+            <summary>
+            Memorize the version like that : [principal] * 100 + [Secondary]
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.socket">
+            <summary>
+            Connexion IP Soket
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.clientPort">
+            <summary>
+            Port number for the client connexion.
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.bufferStream">
+            <summary>
+            Read buffer associated with soket
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.pipeline">
+            <summary>
+            Redis Pipeline mode active if not null
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.cmdBuffer">
+            <summary>
+            Write command buffer
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.cmdBufferIndex">
+            <summary>
+            Write command buffer index
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.lastConnectedAtTimestamp">
+            <summary>
+            Idle counter
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.connectDone">
+            <summary>
+            Connection event wainting envent when timeOut is set
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.processMonitorCallBack">
+            <summary>
+            CallBack for monitor process
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisConnector.processSubscribeCallBack">
+            <summary>
+            Call back for subscribe and psubscribe methods
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.#ctor(System.String)">
+            <summary>
+            Constructor with default port and no password
+            </summary>
+            <param name="host">Server Redis Host</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructor with no password
+            </summary>
+            <param name="host">Server Redis Host</param>
+            <param name="port">Server port</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            Fully qualified constructor
+            </summary>
+            <param name="host">Server Redis Host</param>
+            <param name="port">Server port</param>
+            <param name="password">Password to connect</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetCmdBytes(System.Char,System.Int32)">
+            <summary>
+            Return a byte array for a char and arg lenght
+            </summary>
+            <param name="cmdPrefix">Prefix of the command * or $</param>
+            <param name="lenght">Number of parameters or length</param>
+            <returns>the datas</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetStringFromUtf8Bytes(System.Byte[])">
+            <summary>
+            Convert UTF8 to String
+            </summary>
+            <param name="bytes">the datas</param>
+            <returns>the string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetBytesUtf8FromString(System.String)">
+            <summary>
+            Convert string To UTF8
+            </summary>
+            <param name="value">the string</param>
+            <returns>the datas</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.IsConnected(System.Net.Sockets.Socket)">
+            <summary>
+            Indicate if the socket is connected
+            </summary>
+            <param name="socket">the soket to test</param>
+            <returns>True is is connected</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetDateTimeFromUnixTime(System.Double)">
+            <summary>
+            Convert a unix time to a DateTime
+            </summary>
+            <param name="unixTime">The number of seconds after unix Epoch</param>
+            <returns>A dateTime in Local time</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetUnixTimeFromDateTime(System.DateTime)">
+            <summary>
+            Convert a DateTime to an unix time
+            </summary>
+            <param name="date">The date to convert</param>
+            <returns>the number of second since January 1, 1970</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetTimeSpanFromMicroSecString(System.String)">
+            <summary>
+            Convert a duration from microSeconds to TimeSpan
+            </summary>
+            <param name="value">duration in microseconds</param>
+            <returns>the TimeSpan</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetTimeSpanFromMilliSecDouble(System.Double)">
+            <summary>
+            Convert a duration From MilliSeconds to TimeSpan
+            </summary>
+            <param name="value">duration in milliseconds</param>
+            <returns>the TimeSpan</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetTimeSpanFromSecDouble(System.Double)">
+            <summary>
+            Convert a duration From Seconds to TimeSpan
+            </summary>
+            <param name="value">duration in seconds</param>
+            <returns>the TimeSpan</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetDoubleFromString(System.String,System.Double)">
+            <summary>
+            Get a double from a string
+            </summary>
+            <param name="value">the string to parse</param>
+            <param name="defaultValue">if error return value</param>
+            <returns>the double</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetStringFromDouble(System.Double)">
+            <summary>
+            Convert a double to string in order to send a argument to Redis Server (Culture invariant)
+            </summary>
+            <param name="value">Double to convert</param>
+            <returns>the string (culture invariant)</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetLongFromString(System.String,System.Int64)">
+            <summary>
+            Get a long from a string
+            </summary>
+            <param name="value">the string to parse</param>
+            <param name="defaultValue">if error return value</param>
+            <returns>the long</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.MergeStringBefore(System.String,System.String[])">
+            <summary>
+            Add the command string to the begining of the array argument
+            </summary>
+            <param name="command">string to add in first place</param>
+            <param name="arguments">array of strings</param>
+            <returns>One array with command first and arguments after</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.MergeStringBefore(System.String[][])">
+            <summary>
+            Add the command string to the begining of the array argument
+            </summary>
+            <param name="arguments">array of array of strings</param>
+            <returns>One array with command first and arguments after</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.MergeStringBefore(System.String[],System.Tuple{System.String,System.String},System.Tuple{System.String,System.String}[])">
+            <summary>
+            Add the command string to the begining of the array argument
+            </summary>
+            <param name="arguments">array of strings</param>
+            <param name="fieldValue">first tuple</param>
+            <param name="fieldsValues">array of Tuple key value</param>
+            <returns>One array with command first and arguments after</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.MergeStringBeforeList(System.String,System.String,System.Collections.Generic.List{System.Tuple{System.String,System.String}})">
+            <summary>
+            Add the command string to the begining of the array argument
+            </summary>
+            <param name="arguments">array of strings</param>
+            <param name="fieldValue">first tuple</param>
+            <param name="fieldsValues">array of Tuple key value</param>
+            <returns>One array with command first and arguments after</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.MergeStringBefore(System.String[],ClientRedisLib.RedisClass.SortedSet,ClientRedisLib.RedisClass.SortedSet[])">
+            <summary>
+            Add the command string to the begining of the array argument
+            </summary>
+            <param name="arguments">array of strings</param>
+            <param name="fieldValue">first SortedSet</param>
+            <param name="fieldsValues">array of SortedSet key value</param>
+            <returns>One array with command first and arguments after</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Dispose">
+            <summary>
+            Dispose the connection
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ReadByte">
+            <summary>
+            Read a bit from this.bStram
+            </summary>
+            <returns>the byte</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ReadLine">
+            <summary>
+            Read a line from bStream a line end with \n
+            \r are filtered
+            </summary>
+            <returns>The read string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ReadAny(System.Byte[]@,System.Int32)">
+            <summary>
+            Read lenght car and place it in retbuf return the number of char in retbuf
+            </summary>
+            <param name="retbuf">Read buffer to fill</param>
+            <param name="lenght">Number of char to fill</param>
+            <returns>Number of char filled</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.MakeErrorText(System.String)">
+            <summary>
+            Construct an error message
+            </summary>
+            <param name="errorMsg">The message to format</param>
+            <returns>Formatted Text</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetServerVersionText">
+            <summary>
+            Compute and return the server version
+            </summary>
+            <returns>return the server version in a string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetServerVersion">
+            <summary>
+            Get the server version launch an INFO command if needed
+            </summary>
+            <returns>the sever version</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ComputeVersion(System.String)">
+            <summary>
+            Compute the server version from a string like "2.6.5.12" : 
+            the only 2 first digits are used
+            </summary>
+            <param name="vers">The number of the version [princ] * 100 + [second]</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.AssertConnectedSocket">
+            <summary>
+            Check server connection and connecte if needed
+            </summary>
+            <returns>Connected or not</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Reconnect">
+            <summary>
+            Reconnect after an idle time or loose socket connexion
+            </summary>
+            <returns>Connected or not</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Connect">
+            <summary>
+            Connect the socket
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ConnectCallBack(System.IAsyncResult)">
+            <summary>
+            Call back connection when a time out exists
+            </summary>
+            <param name="ar">Asynch soket argument</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SafeConnectionClose">
+            <summary>
+            Close the old connexion is exists
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SendCommand(System.String[])">
+            <summary>
+            Send command an arguments and get response
+            </summary>
+            <param name="arguments">Commande and arguments</param>
+            <returns>the response</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.IsDebugSegFault(System.String[])">
+            <summary>
+            Check if arguments is "DEBUG", "SEGFAULT"
+            </summary>
+            <param name="arguments">Arrays of arguments</param>
+            <returns>True if first is DEBUG and Second is SEGFAULT</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SendACommand(System.String[])">
+            <summary>
+            Process sendind a command
+            </summary>
+            <param name="arguments">Command and arguments</param>
+            <returns>True is success, if false lastError is updated</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.WriteToSendBuffer(System.String[])">
+            <summary>
+            Write something like *[nb param]\r\n$[length param 1]\r\n[param 1]\r\n$[length param 2]\r\n[param 2]\r\n...
+            </summary>
+            <param name="arguments">Data to write</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.WriteToSendBuffer(System.Byte[])">
+            <summary>
+            Write into the buffer
+            </summary>
+            <param name="datas">Data to write</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.FlushSendBuffer">
+            <summary>
+            Write data on the socket
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ReadAnswer">
+            <summary>
+            Get datas from bStream and get Reponse
+            </summary>
+            <returns>the reponse</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ProcessMonitor(System.IAsyncResult)">
+            <summary>
+            Asynch method to Monitor function
+            </summary>
+            <param name="result">IAsynch info</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ProcessPublish(System.IAsyncResult)">
+            <summary>
+            Asynch method to Subscribe/publish mechanism
+            </summary>
+            <param name="result">IAsynch info</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ExtractFromString(System.String,System.Char,System.Char)">
+            <summary>
+            Split source from model : property1[keyvalueSplitter]value1[propertySplitter]property2[keyvalueSplitter]value2... 
+            To Dictionary([key], [value])
+            </summary>
+            <param name="source">string to split</param>
+            <param name="propertySplitter">splitter char between properties</param>
+            <param name="keyvalueSplitter">splitter char between key and value</param>
+            <returns>the datas</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ThrowErrorIfneeded(ClientRedisLib.RedisClass.RedisReponse,System.String)">
+            <summary>
+            Unified Raise a error
+            </summary>
+            <param name="answer">The protocol answer</param>
+            <param name="title">The title to add to the message</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Del(System.String[])">
+            <summary>
+            Launch the "DEL" command To remove a key from the DB
+            </summary>
+            <param name="key">The keys to del</param>
+            <returns>return the number of keys that were really removed</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Dump(System.String)">
+            <summary>
+            Launch the "DUMP" command To get a key serialized content 
+            </summary>
+            <param name="key">the key to dump</param>
+            <returns>the serialized content</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Exists(System.String)">
+            <summary>
+            Launch the "EXISTS" command to know if a key exists
+            </summary>
+            <param name="key">the key to test</param>
+            <returns>true if the key exists, false else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Expire(System.String,System.Int64)">
+            <summary>
+            Launch the "EXPIRE" command to set the expiration timeout of a key
+            </summary>
+            <param name="key">the key to set the time out</param>
+            <param name="timeOut">Time out in seconds</param>
+            <returns>true if the key timeout is set, false else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ExpireAt(System.String,System.DateTime)">
+            <summary>
+            Launch the "EXPIREAT" command to set the expiration date of a key
+            </summary>
+            <param name="key">the key to set the time out</param>
+            <param name="timeOut">the date in seconds where the key must expire</param>
+            <returns>true if the key  timeout is set, false else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Keys(System.String)">
+            <summary>
+            Launch the "KEYS" command to get all keys matching pattern
+            </summary>
+            <param name="pattern">the pattern to find key accept ? (one char) * (all char) and [] (range of char)</param>
+            <returns>the list of key matching pattern</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Migrate(System.String,System.Int32,System.String,System.Int32,System.Int64)">
+            <summary>
+            Launch the "MIGRATE" command To transfert a key from the server to another one
+            </summary>
+            <param name="host">The Destination server host</param>
+            <param name="port">The destination server port</param>
+            <param name="key">the key to migrate</param>
+            <param name="databaseId">the id of the destination database</param>
+            <param name="timeOut">the idle time OUT during migration (in millisconds)</param>
+            <returns>the serialized content</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Move(System.String,System.Int32)">
+            <summary>
+            Launch the "MOVE" command To transfert a key to another database on the same server
+            </summary>
+            <param name="key">the key to migrate</param>
+            <param name="databaseId">the id of the destination database</param>
+            <returns>the serialized content</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ObjectRefcount(System.String)">
+            <summary>
+            Launch the "OBJECT REFCOUNT" command To get the number of reference for the key
+            </summary>
+            <param name="key">The key to count the references</param>
+            <returns>return the number of references</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ObjectEncoding(System.String)">
+            <summary>
+            Launch the "OBJECT ENCODING" command To get the encoding format of a key
+            </summary>
+            <param name="key">The key to analyse</param>
+            <returns>return the encoding format</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ObjectIdletime(System.String)">
+            <summary>
+            Launch the "OBJECT IDLETIME" command To get the time witch a key is not used
+            </summary>
+            <param name="key">The key to analyse</param>
+            <returns>return the amout of time where a key is not used</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Persist(System.String)">
+            <summary>
+            Launch the "PERSIST" command to remove the expiration timeout of a key
+            </summary>
+            <param name="key">the key to set the time out</param>
+            <returns>true if the key timeout is set, false else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.PExpire(System.String,System.Int64)">
+            <summary>
+            Launch the "PEXPIRE" command to set the expiration timeout of a key
+            </summary>
+            <param name="key">the key to set the time out</param>
+            <param name="timeOutMillisecond">Time out in milliseconds</param>
+            <returns>true if the key timeout is set, false else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.PExpireAt(System.String,System.DateTime)">
+            <summary>
+            Launch the "PEXPIREAT" command to set the expiration date of a key
+            </summary>
+            <param name="key">the key to set the time out</param>
+            <param name="timeOut">the date where the key must expire</param>
+            <returns>true if the key  timeout is set, false else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.PTTL(System.String)">
+            <summary>
+            Launch the "PTTL" command to get the time to live of a key in milliseconds
+            </summary>
+            <param name="key">the key to get the time to live</param>
+            <returns>duration in milliseconds</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.RandomKey">
+            <summary>
+            Launch the "RANDOMKEY" command To get a key 
+            </summary>
+            <returns>the key</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Rename(System.String,System.String)">
+            <summary>
+            Launch the "RENAME" command To rename key to newkey
+            </summary>
+            <param name="key">The key to rename</param>
+            <param name="newKey">The new name of key</param>
+            <returns>trus if done</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.RenameNX(System.String,System.String)">
+            <summary>
+            Launch the "RENAMENX" command To rename key to newkey only if newkey does not exists
+            </summary>
+            <param name="key">The key to rename</param>
+            <param name="newKey">The new name of key</param>
+            <returns>trus if done</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Restore(System.String,System.Int32,System.String)">
+            <summary>
+            Launch the "RESTORE" command To set a serialized key 
+            </summary>
+            <param name="key">the key to restore</param>
+            <param name="ttl">Time to live to set to the key</param>
+            <param name="serializedValue">Value to restore</param>
+            <returns>the serialized content</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Sort(System.String,System.String,ClientRedisLib.RedisClass.Limit,ClientRedisLib.RedisClass.SortOrder,System.Boolean,System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Launch the "SORT" command to returns or stores the elements contained in the list, set or sorted set at key
+            </summary>
+            <param name="key">the key to sort</param>
+            <param name="patternBy">By pattern if filled sort by a external key</param>
+            <param name="limitArg">Limit argument to limit the response</param>
+            <param name="order">Indicate the sort order</param>
+            <param name="alpha">Choose an alphabetical sort instead of numerical sort</param>
+            <param name="destination">Key to store the result</param>
+            <param name="getPatterns">List of pattern to returned keys (can be [pattern]*->field for hash</param>
+            <returns>duration in seconds</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.TTL(System.String)">
+            <summary>
+            Launch the "TTL" command to get the time to live of a key in seconds
+            </summary>
+            <param name="key">the key to get the time to live</param>
+            <returns>duration in seconds</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Type(System.String)">
+            <summary>
+            Launch the "TYPE" command To get the type of a key 
+            </summary>
+            <param name="key">the key to analyse</param>
+            <returns>the type of a key</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Append(System.String,System.String)">
+            <summary>
+            Launch the "APPEND" command To add extra string to  a key
+            </summary>
+            <param name="key">the key to update</param>
+            <param name="value">the text to add</param>
+            <returns>the new lenght of the key</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.BitCount(System.String)">
+            <summary>
+            Launch the "BITCOUNT" command To Count the number of set bits (population counting) in a string.
+            </summary>
+            <param name="key">the key to count</param>
+            <returns>The number of bit</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.BitCount(System.String,System.Int32,System.Int32)">
+            <summary>
+            Launch the "BITCOUNT" command To Count the number of set bits (population counting) in a string.
+            </summary>
+            <param name="key">the key to count</param>
+            <param name="start">the index to start</param>
+            <param name="end">the index to end</param>
+            <returns>the count</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.BitOp(ClientRedisLib.RedisClass.BitOperation,System.String,System.String[])">
+            <summary>
+            Launch the "BITOP" command To Perform a bitwise operation between multiple keys 
+            (containing string values) and store the result in the destination key.
+            </summary>
+            <param name="operation">the combine operation</param>
+            <param name="destKey">the destination key</param>
+            <param name="keys">the array oof key to combine</param>
+            <returns>the size of the result string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Decr(System.String)">
+            <summary>
+            Launch the "DECR" command To decrements the number stored at key by one.
+            </summary>
+            <param name="key">the key to decrement</param>
+            <returns>the new value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.DecrBy(System.String,System.Int32)">
+            <summary>
+            Launch the "DECRBY" command To decrements the number stored at key by a decrement.
+            </summary>
+            <param name="key">the key to decrement</param>
+            <param name="decrement">the value to decrement key</param>
+            <returns>the new value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Get(System.String)">
+            <summary>
+            Launch the "GET" command To get the value of a key
+            </summary>
+            <param name="key">the key to get the value</param>
+            <returns>the value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetBit(System.String,System.Int32)">
+            <summary>
+            Launch the "GETBIT" command To return the bit value at offset in the string value stored at key.
+            </summary>
+            <param name="key">the key to get bit</param>
+            <param name="offset">the offset</param>
+            <returns>the value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetRange(System.String,System.Int32,System.Int32)">
+            <summary>
+            Launch the "GETRANGE" command To get the substring of the string value stored at key
+            </summary>
+            <param name="key">the key to get the value</param>
+            <param name="start">the start index (0 based, or negative to extract from the end of the string)</param>
+            <param name="end">the ent index (0 based, or negative to extract from the end of the string)</param>
+            <returns>the value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.GetSet(System.String,System.String)">
+            <summary>
+            Launch the "GETSET" command To atomically sets key to value and returns the old value stored at key
+            </summary>
+            <param name="key">the key to get / set </param>
+            <param name="value">the value ti set</param>
+            <returns>the value store in key before setting value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Incr(System.String)">
+            <summary>
+            Launch the "INCR" command To increments the number stored at key by one.
+            </summary>
+            <param name="key">the key to increment</param>
+            <returns>the new value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.IncrBy(System.String,System.Int32)">
+            <summary>
+            Launch the "INCRBY" command To increments the number stored at key by an increment.
+            </summary>
+            <param name="key">the key to increment</param>
+            <param name="increment">the value to increment key</param>
+            <returns>the new value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.IncrByFloat(System.String,System.Double)">
+            <summary>
+            Launch the "INCRBYFLOAT" command To increments the number stored at key by an increment.
+            </summary>
+            <param name="key">the key to increment</param>
+            <param name="increment">the value to increment key</param>
+            <returns>the new value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.MGet(System.String[])">
+            <summary>
+            Launch the "MGET" command To get the value of series of keys
+            </summary>
+            <param name="keys">the keys to get the values</param>
+            <returns>the list of values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.MSet(System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Launch the "MSET" command To set the values of series of keys
+            </summary>
+            <param name="keyValues">list of the key values params</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.MSetNX(System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Launch the "MSETNX" command To set the values of series of keys
+            </summary>
+            <param name="keyValues">list of the key values params</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.PSetEX(System.String,System.Int32,System.String)">
+            <summary>
+            Launch the "PSETEX" command To set key to hold the string value and set key to timeout after a given number of milliseconds
+            </summary>
+            <param name="key">the key to set</param>
+            <param name="milliSeconds">the time in seconds to hold the key</param>
+            <param name="value">the value to set</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Set(System.String,System.String)">
+            <summary>
+            Launch the "SET" command To set the values of a key
+            </summary>
+            <param name="key">the key to set</param>
+            <param name="value">the value to set</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SetBit(System.String,System.Int32,System.Boolean)">
+            <summary>
+            Launch the "SETBIT" command To sets or clears the bit at offset in the string value stored at key
+            </summary>
+            <param name="key">the key to set</param>
+            <param name="offset">the offset of the bit to set</param>
+            <param name="value">the value to set</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SetEX(System.String,System.Int32,System.String)">
+            <summary>
+            Launch the "SETEX" command To set key to hold the string value and set key to timeout after a given number of seconds
+            </summary>
+            <param name="key">the key to set</param>
+            <param name="seconds">the time in seconds to hold the key</param>
+            <param name="value">the value to set</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SetNX(System.String,System.String)">
+            <summary>
+            Launch the "SETNX" command To set the values of a key if this key does not exists
+            </summary>
+            <param name="key">the key to set</param>
+            <param name="value">the value to set</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SetRange(System.String,System.Int32,System.String)">
+            <summary>
+            Launch the "SETRANGE" command To Overwrites part of the string stored at key
+            starting at the specified offset, for the entire length of value
+            </summary>
+            <param name="key">the key to set</param>
+            <param name="offset">the ofsset</param>
+            <param name="value">the value to set</param>
+            <returns>the total lenght of the string</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.StrLen(System.String)">
+            <summary>
+            Launch the "STRLEN" command To returns the length of the string value stored at key.
+            </summary>
+            <param name="key">the key</param>
+            <returns>the total lenght of the key</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HDel(System.String,System.String,System.String[])">
+            <summary>
+            Launch the "HDEL" command To remove specified field form hash key
+            </summary>
+            <param name="key">the key to update</param>
+            <param name="field">the first field to remove</param>
+            <param name="fields">the other fields to remove</param>
+            <returns>the lenght of deleted fields</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HExists(System.String,System.String)">
+            <summary>
+            Launch the "HEXISTS" command To returns if field is an existing field in the hash stored at key
+            </summary>
+            <param name="key">the key analyse</param>
+            <param name="field">the field to analyse</param>
+            <returns>true if field existis in key</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HGet(System.String,System.String)">
+            <summary>
+            Launch the "HGET" command To returns the value associated with field in the hash stored at key.
+            </summary>
+            <param name="key">the key to get</param>
+            <param name="field">the field to get</param>
+            <returns>the value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HGetAll(System.String)">
+            <summary>
+            Launch the "HGETALL" command To returns all the fields and the values in the hash stored at key.
+            </summary>
+            <param name="key">the key to get</param>
+            <returns>the fields and values list</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HIncrBy(System.String,System.String,System.Int32)">
+            <summary>
+            Launch the "HINCRBY" command To increment the number stored in field in the hash key
+            </summary>
+            <param name="key">the key to manipulate</param>
+            <param name="field">the field to incrment</param>
+            <param name="increment">the increment value (positive or negative)</param>
+            <returns>the new value after operation</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HIncrBYFloat(System.String,System.String,System.Double)">
+            <summary>
+            Launch the "HINCRBYFLOAT" command To increment the number stored in field in the hash key
+            </summary>
+            <param name="key">the key to manipulate</param>
+            <param name="field">the field to incrment</param>
+            <param name="increment">the increment value (positive or negative)</param>
+            <returns>the new value after operation</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HKeys(System.String)">
+            <summary>
+            Launch the "HKEYS" command To returns all field names in the hash stored at key
+            </summary>
+            <param name="key">the key to get</param>
+            <returns>the fields and values list</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HLen(System.String)">
+            <summary>
+            Launch the "HLEN" command To returns the number of fields contained in the hash stored at key
+            </summary>
+            <param name="key">the key to get</param>
+            <returns>the number of fields in key</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HMGet(System.String,System.String,System.String[])">
+            <summary>
+            Launch the "HMGET" command To returns the values associated with the specified fields in the hash stored at key
+            </summary>
+            <param name="key">the key to get</param>
+            <param name="field">the first field to get the value</param>
+            <param name="fields">the other fields to get the value</param>
+            <returns>the values list</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HMSet(System.String,System.Tuple{System.String,System.String},System.Tuple{System.String,System.String}[])">
+            <summary>
+            Launch the "HMSET" command To sets the specified fields to their respective values in the hash stored at key.
+            </summary>
+            <param name="key">the key to set</param>
+            <param name="fieldValue">the first field value to set the value</param>
+            <param name="fieldsValues">the other fields values to set</param>
+            <returns>True if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HMSet(System.String,System.Collections.Generic.List{System.Tuple{System.String,System.String}})">
+            <summary>
+            Launch the "HMSET" command To sets the specified fields to their respective values in the hash stored at key.
+            </summary>
+            <param name="key">the key to set</param>
+            <param name="fieldsValues">All fields values to set</param>
+            <returns>True if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HSet(System.String,System.String,System.String)">
+            <summary>
+            Launch the "HSET" command To set specified field from hash key
+            </summary>
+            <param name="key">the key to update</param>
+            <param name="field">the field to set</param>
+            <param name="value">the value</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HSetNX(System.String,System.String,System.String)">
+            <summary>
+            Launch the "HSETNX" command To set specified field from hash key only if field does not exists
+            </summary>
+            <param name="key">the key to update</param>
+            <param name="field">the field to set</param>
+            <param name="value">the value</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.HVALS(System.String)">
+            <summary>
+            Launch the "HVALS" command To returns all value in the hash stored at key
+            </summary>
+            <param name="key">the key to get</param>
+            <returns>the fields and values list</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.BLPop(System.Int32,System.String,System.String[])">
+            <summary>
+            Launch the "BLPOP" command To removes and returns the first element of the lists stored at keys. If lists are empty BLPOP wait and block the client
+            </summary>
+            <param name="timeOut">The time in seconds to wait if all lists are empty</param>
+            <param name="key">the key of the first list to pop</param>
+            <param name="keys">the keys of other lists to pop</param>
+            <returns>null if timeOut : Tuple(key, value) else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.BRPop(System.Int32,System.String,System.String[])">
+            <summary>
+            Launch the "BRPOP" command To removes and returns the last element of the lists stored at keys. If lists are empty BRPOP wait and block the client
+            </summary>
+            <param name="timeOut">The time in seconds to wait if all lists are empty</param>
+            <param name="key">the key of the first list to pop</param>
+            <param name="keys">the keys of other lists to pop</param>
+            <returns>null if timeOut : Tuple(key, value) else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.BRPopLPush(System.String,System.String,System.Int32)">
+            <summary>
+            Launch the "BRPOPLPUSH" command To atomically returns and removes the last element (tail) of the list stored at source, 
+            and pushes the element at the first element (head) of the list stored at destination. This operation block the client if there is no element in source
+            </summary>
+            <param name="source">the source list</param>
+            <param name="destination">the destination list</param>
+            <param name="timeOut">delay in seconds for waiting 0 = infity</param>
+            <returns>the element being popped and pushed</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LIndex(System.String,System.Int32)">
+            <summary>
+            Launch the "LINDEX" command To returns the element at index index in the list stored at key
+            </summary>
+            <param name="key">the key</param>
+            <param name="index">the index to analyse</param>
+            <returns>the value at the index</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LInsert(System.String,System.Boolean,System.String,System.String)">
+            <summary>
+            Launch the "LINSERT" command To inserts value in the list stored at key either before or after the reference value pivot.
+            </summary>
+            <param name="key">the key</param>
+            <param name="after">the index to analyse</param>
+            <param name="pivot">the value after or before we must insert value</param>
+            <param name="value">the inserted value</param>
+            <returns>the length of the list after the insert operation, or -1 when the value pivot was not found</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LLen(System.String)">
+            <summary>
+            Launch the "LLEN" command To returns the length of the list stored at key
+            </summary>
+            <param name="key">the key to analyse</param>
+            <returns>the length of the list</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LPop(System.String)">
+            <summary>
+            Launch the "LPOP" command To removes and returns the first element of the list stored at key
+            </summary>
+            <param name="key">the key to pop</param>
+            <returns>the first value of the list (the value was removed)</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LPush(System.String,System.String,System.String[])">
+            <summary>
+            Launch the "LPUSH" command To insert all the specified values at the head of the list stored at key
+            </summary>
+            <param name="key">the key to populate</param>
+            <param name="value">the first value to push into the list</param>
+            <param name="values">other values to push into the list</param>
+            <returns>the lenght of then list after the push operation</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LPushX(System.String,System.String)">
+            <summary>
+            Launch the "LPUSHX" command To Inserts value at the head of the list stored at key, only if key already exists and holds a list
+            </summary>
+            <param name="key">the key to populate</param>
+            <param name="value">the value to push into the list</param>
+            <returns>the lenght of then list after the push operation</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LRange(System.String,System.Int32,System.Int32)">
+            <summary>
+            Launch the "LRANGE" command To returns the specified elements of the list stored at key
+            </summary>
+            <param name="key">the key to populate</param>
+            <param name="start">the start index</param>
+            <param name="stop">the stop index</param>
+            <returns>the element in the list between start and stop</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LRem(System.String,System.Int32,System.String)">
+            <summary>
+            Launch the "LREM" command To removes the first count occurrences of elements equal to value from the list stored at key
+            </summary>
+            <param name="key">the key to populate</param>
+            <param name="count">the number of removed element &gt;0 start from head to tail, &lt;0 sart from tail to head, equal 0 remove all</param>
+            <param name="value">the value to remove</param>
+            <returns>the number of removed elements</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LSet(System.String,System.Int32,System.String)">
+            <summary>
+            Launch the "LSET" command To sets the list element at index to value
+            </summary>
+            <param name="key">the key to update</param>
+            <param name="index">the index of the value to update</param>
+            <param name="value">the new value</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LTrim(System.String,System.Int32,System.Int32)">
+            <summary>
+            Launch the "LTRIM" command To trim an existing list so that it will contain only the specified range of elements specified
+            </summary>
+            <param name="key">the key to trim</param>
+            <param name="start">the starting index</param>
+            <param name="stop">the stoping index</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.RPop(System.String)">
+            <summary>
+            Launch the "RPOP" command To removes and returns the last element of the list stored at key
+            </summary>
+            <param name="key">the key to pop</param>
+            <returns>the first value of the list (the value was removed)</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.RPopLPush(System.String,System.String)">
+            <summary>
+            Launch the "RPOPLPUSH" command To atomically returns and removes the last element (tail) of the list stored at source, 
+            and pushes the element at the first element (head) of the list stored at destination
+            </summary>
+            <param name="source">the source list</param>
+            <param name="destination">the destination list</param>
+            <returns>the element being popped and pushed</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.RPush(System.String,System.String,System.String[])">
+            <summary>
+            Launch the "RPUSH" command To insert all the specified values at the tail of the list stored at key
+            </summary>
+            <param name="key">the key to populate</param>
+            <param name="value">the first value to push into the list</param>
+            <param name="values">other values to push into the list</param>
+            <returns>the lenght of then list after the push operation</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.RPushX(System.String,System.String)">
+            <summary>
+            Launch the "RPUSHX" command To Inserts value at the tail of the list stored at key, only if key already exists and holds a list
+            </summary>
+            <param name="key">the key to populate</param>
+            <param name="value">the value to push into the list</param>
+            <returns>the lenght of then list after the push operation</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SAdd(System.String,System.String,System.String[])">
+            <summary>
+            Launch the "SADD" command To add a member to a SET
+            </summary>
+            <param name="key">the key to update</param>
+            <param name="member">the first text to add</param>
+            <param name="members">the other text to add</param>
+            <returns>Indicate if value is added; When Not added check LastError</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SCard(System.String)">
+            <summary>
+            Launch the "SCARD" command To get the number of a SET key
+            </summary>
+            <param name="key">the key to evaluate</param>
+            <returns>number of fields</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SDiff(System.String,System.String[])">
+            <summary>
+            Launch the "SDIFF" command To get the member ok key who are not in the differents keys
+            </summary>
+            <param name="key">the key source</param>
+            <param name="keys">the other keys to diff</param>
+            <returns>the members of key who are not found in keys</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SDiffStore(System.String,System.String,System.String[])">
+            <summary>
+            Launch the "SDIFFSTORE" command To get the member ok key who are not in the differents keys and store into destination
+            </summary>
+            <param name="destination">the destination key</param>
+            <param name="key">the key source</param>
+            <param name="keys">the other keys to diff</param>
+            <returns>number of fields</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SInter(System.String,System.String[])">
+            <summary>
+            Launch the "SINTER" command To get the members who are in all sets
+            </summary>
+            <param name="key">the key source</param>
+            <param name="keys">the other keys to diff</param>
+            <returns>the members of key who are in the intersection of all the given keys</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SInterStore(System.String,System.String,System.String[])">
+            <summary>
+            Launch the "SINTERSTORE" command To get the members who are in all sets and store into destination
+            </summary>
+            <param name="destination">the destination key</param>
+            <param name="key">the key source</param>
+            <param name="keys">the other keys to diff</param>
+            <returns>number of intersceted fields</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SIsMember(System.String,System.String)">
+            <summary>
+            Launch the "SISMEMBER" command To know if member is in the set key
+            </summary>
+            <param name="key">the key source</param>
+            <param name="member">the member to search</param>
+            <returns>true if it is</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SMembers(System.String)">
+            <summary>
+            Launch the "SMEMBERS" command To get the members of a sets
+            </summary>
+            <param name="key">the key to get members</param>
+            <returns>the members of key</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SMove(System.String,System.String,System.String)">
+            <summary>
+            Launch the "SMOVE" command To move member from the set source to the set destination
+            </summary>
+            <param name="source">the key source</param>
+            <param name="destination">the key destination</param>
+            <param name="member">the member to move</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SPop(System.String)">
+            <summary>
+            Launch the "SPOP" command To remove and get a member of a set key
+            </summary>
+            <param name="key">the key</param>
+            <returns>the poped member</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SRandMember(System.String,System.Int32)">
+            <summary>
+            Launch the "SRANDMEMBER" command To get a member of a set key 
+            </summary>
+            <param name="key">the key</param>
+            <param name="count">If Greater then 0 then return count elements, if lower than 0 return the same element count times (2.6) before 2.6 must be 0</param>
+            <returns>the members</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SRem(System.String,System.String[])">
+            <summary>
+            Launch the "SREM" command To remove the members of the set key
+            </summary>
+            <param name="key">the key source</param>
+            <param name="members">the members to remove</param>
+            <returns>number of removed members</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SUnion(System.String,System.String[])">
+            <summary>
+            Launch the "SUNION" command To get the union of all members of sets
+            </summary>
+            <param name="key">the key source</param>
+            <param name="keys">the other keys to diff</param>
+            <returns>the members of the union</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SUnionStore(System.String,System.String,System.String[])">
+            <summary>
+            Launch the "SUNIONSTORE" command To get the union of all members of sets and store into destination
+            </summary>
+            <param name="destination">the destination key</param>
+            <param name="key">the key source</param>
+            <param name="keys">the other keys to diff</param>
+            <returns>number of intersceted fields</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZAdd(System.String,ClientRedisLib.RedisClass.SortedSet,ClientRedisLib.RedisClass.SortedSet[])">
+            <summary>
+            Launch the "ZADD" command To add a member to a sorted SET
+            </summary>
+            <param name="key">the key to update</param>
+            <param name="member">the first member to add to add</param>
+            <param name="members">the other members to add to add</param>
+            <returns>Indicate the number of sorted set added (updated sortedSet are not in the total</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZCard(System.String)">
+            <summary>
+            Launch the "ZCARD" command To returns the sorted set cardinality (number of elements) of the sorted set stored at key
+            </summary>
+            <param name="key">the key to count</param>
+            <returns>the number of sorted set</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZCount(System.String,System.Double,System.Double)">
+            <summary>
+            Launch the "ZCOUNT" command To returns the number of elements in the sorted set at key with a score between min and max.
+            </summary>
+            <param name="key">the key to count</param>
+            <param name="min">the min score to begin counting</param>
+            <param name="max">the max score to stop counting</param>
+            <returns>the number of sorted set</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZIncrBy(System.String,System.Double,System.String)">
+            <summary>
+            Launch the "ZINCRBY" command To increments the score of member in the sorted set stored at key by increment
+            </summary>
+            <param name="key">the key to update</param>
+            <param name="increment">the value to increment</param>
+            <param name="member">the first member to add to add</param>
+            <returns>the new value</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZInterStore(System.String,System.Collections.Generic.List{System.String},ClientRedisLib.RedisClass.ZAggregate)">
+            <summary>
+            Launch the "ZINTERSTORE" command To computes the intersection of numkeys sorted sets given by the specified keys, and stores the result in destination
+            </summary>
+            <param name="destination">the key to update or create as the result of the operation</param>
+            <param name="keys">the list of keys </param>
+            <param name="aggregate">the agregate operation</param>
+            <returns>the number of values in the result set</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZInterStore(System.String,System.Collections.Generic.List{System.Tuple{System.String,System.Double}},ClientRedisLib.RedisClass.ZAggregate)">
+            <summary>
+            Launch the "ZINTERSTORE" command To computes the intersection of numkeys sorted sets given by the specified keys, and stores the result in destination
+            </summary>
+            <param name="destination">the key to update or create as the result of the operation</param>
+            <param name="keys">the list of keys with ponderation weight</param>
+            <param name="aggregate">the agregate operation</param>
+            <returns>the number of values in the result set</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRange(System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Launch the "ZRANGE" command To returns the specified range of elements in the sorted (lowest to highest) set stored at key
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="start">the starting index to return (zero based)</param>
+            <param name="stop">the stoping index to return (zero based)</param>
+            <param name="withScores">return scrore or not</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRangeByScore(System.String,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Launch the "ZRANGEBYSCORE" command To returns all the elements in the sorted set at 
+            key with a score between min and max (including elements with score equal to min or max).
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="min">the min score to return</param>
+            <param name="max">the max score to return</param>
+            <param name="withScores">return scrore or not</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRangeByScore(System.String,System.Double,System.Double,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Launch the "ZRANGEBYSCORE" command To returns all the elements in the sorted set at 
+            key with a score between min and max (including elements with score equal to min or max).
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="min">the min score to return</param>
+            <param name="max">the max score to return</param>
+            <param name="withScores">return scrore or not</param>
+            <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
+            <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRangeByScore(System.String,System.Double,System.Double,System.Boolean,System.Boolean,System.Boolean,ClientRedisLib.RedisClass.Limit)">
+            <summary>
+            Launch the "ZRANGEBYSCORE" command To returns all the elements in the sorted set at 
+            key with a score between min and max (including elements with score equal to min or max).
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="min">the min score to return</param>
+            <param name="max">the max score to return</param>
+            <param name="withScores">return scrore or not</param>
+            <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
+            <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
+            <param name="limitArg">Get a Limit offset and count if needed</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRank(System.String,System.String)">
+            <summary>
+            Launch the "ZRANK" command To returns the rank of member in the sorted set stored at key, with the scores ordered from low to high
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="member">the member to compute</param>
+            <returns>the index of the member in the z set (-1 if not found or error)</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRem(System.String,System.String,System.String[])">
+            <summary>
+            Launch the "ZREM" command To removes the specified members from the sorted set stored at key
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="member">the first member to remove</param>
+            <param name="members">Other members to remove</param>
+            <returns>the number of removed members</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRemRangeByRank(System.String,System.Int32,System.Int32)">
+            <summary>
+            Launch the "ZREMRANGEBYRANK" command To removes all elements in the sorted set stored at key with rank between start and stop
+            </summary>
+            <param name="key">the key to remove members</param>
+            <param name="start">the first member index to remove</param>
+            <param name="stop">the last member index to remove</param>
+            <returns>the number of removed members</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRemRangeByScore(System.String,System.Double,System.Double)">
+            <summary>
+            Launch the "ZREMRANGEBYSCORE" command To removes all elements in the sorted set stored at key with rank between start and stop
+            </summary>
+            <param name="key">the key to remove members</param>
+            <param name="min">the first member score to remove</param>
+            <param name="max">the last member score to remove</param>
+            <returns>the number of removed members</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRemRangeByScore(System.String,System.Double,System.Double,System.Boolean,System.Boolean)">
+            <summary>
+            Launch the "ZREMRANGEBYSCORE" command To removes all elements in the sorted set stored at key with rank between start and stop
+            </summary>
+            <param name="key">the key to remove members</param>
+            <param name="min">the first member score to remove</param>
+            <param name="max">the last member score to remove</param>
+            <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
+            <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
+            <returns>the number of removed members</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRevRange(System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Launch the "ZREVRANGE" command To returns the specified range of elements in the sorted (highest to lowest) set stored at key
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="start">the starting index to return (zero based)</param>
+            <param name="stop">the stoping index to return (zero based)</param>
+            <param name="withScores">return scrore or not</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRevRangeByScore(System.String,System.Double,System.Double,System.Boolean)">
+            <summary>
+            Launch the "ZREVRANGEBYSCORE" command To returns all the elements in the sorted set at 
+            key with a score between min and max (including elements with score equal to min or max).
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="min">the min score to return</param>
+            <param name="max">the max score to return</param>
+            <param name="withScores">return scrore or not</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRevRangeByScore(System.String,System.Double,System.Double,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Launch the "ZREVRANGEBYSCORE" command To returns all the elements in the sorted set at 
+            key with a score between min and max (including elements with score equal to min or max).
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="min">the min score to return</param>
+            <param name="max">the max score to return</param>
+            <param name="withScores">return scrore or not</param>
+            <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
+            <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRevRangeByScore(System.String,System.Double,System.Double,System.Boolean,System.Boolean,System.Boolean,ClientRedisLib.RedisClass.Limit)">
+            <summary>
+            Launch the "ZREVRANGEBYSCORE" command To returns all the elements in the sorted set at 
+            key with a score between min and max (including elements with score equal to min or max).
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="min">the min score to return</param>
+            <param name="max">the max score to return</param>
+            <param name="withScores">return scrore or not</param>
+            <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
+            <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
+            <param name="limitArg">Get a Limit offset and count if needed</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRevRank(System.String,System.String)">
+            <summary>
+            Launch the "ZREVRANK" command To returns the rank of member in the sorted set stored at key, with the scores ordered from high to low
+            </summary>
+            <param name="key">the key to analyse</param>
+            <param name="member">the member to compute</param>
+            <returns>the index of the member in the z set (-1 if not found or error)</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZScore(System.String,System.String)">
+            <summary>
+            Launch the "ZSCORE" command To returns the score of member in the sorted set at key.
+            </summary>
+            <param name="key">the key to commpute</param>
+            <param name="member">the member to get the score</param>
+            <returns>the score of the member</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZUnionStore(System.String,System.Collections.Generic.List{System.String},ClientRedisLib.RedisClass.ZAggregate)">
+            <summary>
+            Launch the "ZUNIONSTORE" command To computes the union of numkeys sorted sets given by the specified keys, and stores the result in destination
+            </summary>
+            <param name="destination">the key to update or create as the result of the operation</param>
+            <param name="keys">the list of keys with ponderation weight</param>
+            <param name="aggregate">the agregate operation</param>
+            <returns>the number of values in the result set</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZUnionStore(System.String,System.Collections.Generic.List{System.Tuple{System.String,System.Double}},ClientRedisLib.RedisClass.ZAggregate)">
+            <summary>
+            Launch the "ZUNIONSTORE" command To computes the union of numkeys sorted sets given by the specified keys, and stores the result in destination
+            </summary>
+            <param name="destination">the key to update or create as the result of the operation</param>
+            <param name="keys">the list of keys with ponderation weight</param>
+            <param name="aggregate">the agregate operation</param>
+            <returns>the number of values in the result set</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.PSubscribe(ClientRedisLib.RedisClass.EventSubscribeHandeler,System.String[])">
+            <summary>
+            Launch the "PSUBSCRIBE" command : to subscribe to different chanels choosed by pattern
+            </summary>
+            <param name="fct">Call back method to receive datas</param>
+            <param name="patterns">List of pattern to subscribe</param>
+            <returns>True if PSubscribe ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Publish(System.String,System.String)">
+            <summary>
+            Launch the "PUBLISH" command To publish a message on a chanel
+            </summary>
+            <param name="channel">The channel where publish the message</param>
+            <param name="message">The publised message</param>
+            <returns>the number of clients that received the message</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.PUnSubscribe(System.String[])">
+            <summary>
+            Launch the "PUNSUBSCRIBE" command : to unsubscribe to different chanels choosed by pattern
+            </summary>
+            <param name="patterns">List of pattern to subscribe</param>
+            <returns>True if UnSubscribe command correct</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Subscribe(ClientRedisLib.RedisClass.EventSubscribeHandeler,System.String[])">
+            <summary>
+            Launch the "SUBSCRIBE" command : to subscribe to different chanels
+            </summary>
+            <param name="fct">Call back method to receive datas</param>
+            <param name="chanels">List of chanel to subscribe</param>
+            <returns>True if Subscribe ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.UnSubscribe(System.String[])">
+            <summary>
+            Launch the "UNSUBSCRIBE" command : to unsubscribe to different chanels
+            </summary>
+            <param name="chanels">List of chanels to subscribe</param>
+            <returns>True if UnSubscribe command correct</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Discard">
+            <summary>
+            Launch the "DISCARD" command To flush all previous MULTI commands
+            </summary>
+            <returns>Always true</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Exec">
+            <summary>
+            Launch the "EXEC" command To execute MULTI commands
+            </summary>
+            <returns>Always true</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Multi">
+            <summary>
+            Launch the "MULTI" command start a transaction
+            </summary>
+            <returns>Always true</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.UnWatch">
+            <summary>
+            Launch the "UNWATCH" command Flush all previously watched keys for a transaction
+            </summary>
+            <returns>Always true</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Watch(System.String[])">
+            <summary>
+            Launch the "WATCH" command to marks the given keys to be watched for conditional execution of a transaction.
+            </summary>
+            <param name="keys">the list of watched keys</param>
+            <returns>Always true</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Eval(System.String,System.String[],System.String[])">
+            <summary>
+            Launch the "EVAL" command To run an LUA script
+            </summary>
+            <param name="script">The LUA script</param>
+            <param name="keys">the array of arguments keys</param>
+            <param name="args">The array of arguments</param>
+            <returns>the reponse depends of the script</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.EvalSha(System.String,System.String[],System.String[])">
+            <summary>
+            Launch the "EVALSHA" command To run an LUA script
+            </summary>
+            <param name="sha1">The sha1 key of an LUA script cached</param>
+            <param name="keys">the array of arguments keys</param>
+            <param name="args">The array of arguments</param>
+            <returns>the reponse depends of the script</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ScriptExists(System.String[])">
+            <summary>
+            Launch the "SCRIPT EXISTS" command To know if tha sha keys exists
+            </summary>
+            <param name="sha1">The sha1 keys to test</param>
+            <returns>for each key true if it exists</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ScriptFlush">
+            <summary>
+            Launch the "SCRIPT FLUSH" command To flush all lua script cache
+            </summary>
+            <returns>true if command success</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ScriptKill">
+            <summary>
+            Launch the "SCRIPT KILL" command To flush all lua script cache
+            </summary>
+            <returns>true if command success</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ScriptLoad(System.String)">
+            <summary>
+            Launch the "SCRIPT LOAD" command To Load a script into the script cache an get the key
+            </summary>
+            <param name="script">The LUA script</param>
+            <returns>the the sha1 key of this script</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Auth(System.String)">
+            <summary>
+            Launch the "AUTH" command To connect with a password
+            </summary>
+            <param name="password">The password to set</param>
+            <returns>True if Ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Echo(System.String)">
+            <summary>
+            Launch the "ECHO" command : Display text !
+            </summary>
+            <param name="message">The message to display</param>
+            <returns>the Message to display</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Ping">
+            <summary>
+            Launch the "PING" command To now if the server is ok
+            </summary>
+            <returns>True if Pong, False else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Quit">
+            <summary>
+            Launch the "QUIT" command To close connexion
+            </summary>
+            <returns>True if Pong, False else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Select(System.Int32)">
+            <summary>
+            Launch the "SELECT" command To change the current database ID
+            </summary>
+            <param name="databaseId">The id to set</param>
+            <returns>True if Ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.BgRewriteAOF">
+            <summary>
+            Launch the "BGREWRITEAOF" command : start writing AOF file
+            </summary>
+            <returns>Redis Server Message</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.BgSave">
+            <summary>
+            Launch the "BgSave" command : Save the db
+            </summary>
+            <returns>Redis Server Message</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ClientKill(System.String)">
+            <summary>
+            Launch the "CLIENT KILL" command : Kill a client connection and get the result
+            </summary>
+            <param name="adresseIp">Client ip to kill</param>
+            <returns>true if client killed, false if error see LastErrorText for explain</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ClientList">
+            <summary>
+            Launch the "CLIENT LIST" command : Get the list of connected clients
+            </summary>
+            <returns>A list of all client properties</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ConfigGet(System.String)">
+            <summary>
+            Launch the "CONFIG GET [pattern]" command Get the list of server propertie that matching pattern
+            </summary>
+            <param name="pattern">Pattern to apply : type * for all</param>
+            <returns>Dictionary([config], [valeur])</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ConfigResetStat">
+            <summary>
+            Launch the "CONFIG RESETSTAT" command reset server statistics counters
+            </summary>
+            <returns>True if non problem</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ConfigSet(System.String,System.String)">
+            <summary>
+            Launch the "CONFIG SET Key Value" command  adjust the config property 'key' with 'value'
+            </summary>
+            <param name="key">the key to adjust</param>
+            <param name="value">the value</param>
+            <returns>true if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.DbSize">
+            <summary>
+            Launch the "DBSIZE" command and get the number of keys in the DB
+            </summary>
+            <returns>Number of keys on the db, -1 if error</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.DebugObject(System.String)">
+            <summary>
+            Launch the "DEBUG OBJECT" command get the debug info on the key
+            </summary>
+            <param name="key">the key to debug</param>
+            <returns>all the debug properties</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.DebugSegfault">
+            <summary>
+            Launch the "DEBUG SEGFAULT" command crash the server for debug !!
+            </summary>
+            <returns>True if ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.FlushAll">
+            <summary>
+            Launch the "FLUSHALL" command RAZ all datas of all DBs
+            </summary>
+            <returns>True if ok, false else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.FlushDB">
+            <summary>
+            Launch the "FLUSHDB" command RAZ all datas of the current DB
+            </summary>
+            <returns>True if ok, false else</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Info">
+            <summary>
+            Launch the "INFO" command : get all information about the server
+            </summary>
+            <returns>Key Value dictionary</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.LastSave">
+            <summary>
+            Launch the "LASTSAVE" command get the date of the last completed save.
+            </summary>
+            <returns>Number of keys on the db, -1 if error</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Monitor(ClientRedisLib.RedisClass.EventMonitorHandler)">
+            <summary>
+            Launch the "MONITOR" command : send datas to the call by the param fct
+            </summary>
+            <param name="fct">Call back method to receive datas</param>
+            <returns>True if monitor ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Save">
+            <summary>
+            Launch the "SAVE" command save the server (bloking process)
+            </summary>
+            <returns>True if Ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Shutdown(ClientRedisLib.RedisClass.ShutdownOption)">
+            <summary>
+            Launch the "SHUTDOWN" command to stop the server no reponse pending
+            </summary>
+            <param name="opt">Shutdown option (Only from 2.6 version)</param>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SlaveOf(System.String,System.Int32)">
+            <summary>
+            Launch the "SLAVEOF" command Make this server slave of another one
+            </summary>
+            <param name="hostname">Host name of the master</param>
+            <param name="port">port of the master</param>
+            <returns>True if Ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SlaveOfNoOne">
+            <summary>
+            Launch the "SLAVEOF" command Make this server slave of no one
+            </summary>
+            <returns>True if Ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SlowLogGet(System.Int32)">
+            <summary>
+            Launch the "SLOWLOG GET xx" command that return the "slowest commands" list
+            </summary>
+            <param name="size">number of most recent rows (use -1 for all)</param>
+            <returns>the list of slowest commands</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SlowLogLen">
+            <summary>
+            Launch the "SLOWLOG LEN" command that return the current length of the "slowest commands" list
+            </summary>
+            <returns>the current length of the slowest command list</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SlowLogReset">
+            <summary>
+            Launch the "SLOWLOG RESET" command that clear the "slowest commands" list
+            </summary>
+            <returns>true is ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Sync(ClientRedisLib.RedisClass.EventMonitorHandler)">
+            <summary>
+            Launch the "SYNC" command : send datas to the call by the param fct
+            </summary>
+            <param name="fct">Call back method to receive datas</param>
+            <returns>True if monitor ok</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.Time">
+            <summary>
+            Launch the "SLOWLOG RESET" command and return the server time 
+            </summary>
+            <returns>the date time and micro seconds</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SentinelMasters">
+            <summary>
+            Returns the result of the command Sentinel masters :show a list of monitored masters and their state
+            </summary>
+            <returns>a list of dictionnary masters infos</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SentinelSlaves(System.String)">
+            <summary>
+            Returns the result of the command Sentinel slaves : show a list of slaves for this master, and their state
+            </summary>
+            <param name="masterKey">Get the master to query</param>
+            <returns>a list of dictionnary masters infos</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SentinelIsMasterDownByAddr(System.String,System.Int32)">
+            <summary>
+            Returns the result of the command Sentinel is-master-down-by-addr :
+            return a two elements multi bulk reply where the first is 0 or 1 
+            (0 if the master with that address is known and is in SDOWN state, 1 otherwise). 
+            The second element of the reply is the subjective leader for this master, that is, 
+            the runid of the Redis Sentinel instance that should perform the failover accordingly 
+            to the queried instance
+            </summary>
+            <param name="adresse">the adresse ip of the master to ask</param>
+            <param name="port">the port of the server</param>
+            <returns>a pair of infos</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SentinelGetMasterAddrByName(System.String)">
+            <summary>
+            Returns the result of the command Sentinel get-master-addr-by-name :
+            return the ip and port number of the master with that name. 
+            If a failover is in progress or terminated successfully for this master 
+            it returns the address and port of the promoted slave
+            </summary>
+            <param name="masterName">the name of the server to ask</param>
+            <returns>the adress and the port</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.SentinelReset(System.String)">
+            <summary>
+            Returns the result of the command Sentinel reset :
+            this command will reset all the masters with matching name. 
+            The pattern argument is a glob-style pattern. 
+            The reset process clears any previous state in a master (including a failover in progress), 
+            and removes every slave and sentinel already discovered and associated with the master
+            </summary>
+            <param name="pattern">the pattern to match server</param>
+            <returns>the adress and the port</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRangeInternal(System.String,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Launch the "ZRANGE" OR "ZREVRANGE" command To returns the specified range of elements in the sorted set stored at key
+            </summary>
+            <param name="keyWord">Must be : "ZRANGE" OR "ZREVRANGE"</param>
+            <param name="key">the key to analyse</param>
+            <param name="start">the starting index to return (zero based)</param>
+            <param name="stop">the stoping index to return (zero based)</param>
+            <param name="withScores">return scrore or not</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRangeByScoreInternal(System.String,System.String,System.Double,System.Double,System.Boolean,System.Boolean,System.Boolean,ClientRedisLib.RedisClass.Limit)">
+            <summary>
+            Launch the "ZRANGEBYSCORE" or "ZREVRANGEBYSCORE" command To returns all the elements in the sorted set at 
+            key with a score between min and max (including elements with score equal to min or max).
+            </summary>
+            <param name="keyWord">Must be "ZRANGEBYSCORE" or "ZREVRANGEBYSCORE"</param>
+            <param name="key">the key to analyse</param>
+            <param name="min">the min score to return</param>
+            <param name="max">the max score to return</param>
+            <param name="withScores">return scrore or not</param>
+            <param name="minIncluded">indicate if the min score is included (by default or excluded)</param>
+            <param name="maxIncluded">indicate if the max score is included (by default or excluded)</param>
+            <param name="limitArg">Get a Limit offset and count if needed</param>
+            <returns>the values</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZRankInternal(System.String,System.String,System.String)">
+            <summary>
+            Launch the "ZRANK" or "ZREVRANK" command To returns the rank of member in the sorted set stored at key, with the scores ordered from high to low
+            </summary>
+            <param name="keyWord">Must be "ZRANK" or "ZREVRANK"</param>
+            <param name="key">the key to analyse</param>
+            <param name="member">the member to compute</param>
+            <returns>the index of the member in the z set (-1 if not found or error)</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZOperationStoreInternal(System.String,System.String,System.Collections.Generic.List{System.String},ClientRedisLib.RedisClass.ZAggregate)">
+            <summary>
+            Launch the "ZINTERSTORE" or "ZUNIONSTORE" command To computes the union of numkeys sorted sets given by the specified keys, and stores the result in destination
+            </summary>
+            <param name="keyWord">must be "ZINTERSTORE" or "ZUNIONSTORE"</param>
+            <param name="destination">the key to update or create as the result of the operation</param>
+            <param name="keys">the list of keys with ponderation weight</param>
+            <param name="aggregate">the agregate operation</param>
+            <returns>the number of values in the result set</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.ZOperationStoreInternal(System.String,System.String,System.Collections.Generic.List{System.Tuple{System.String,System.Double}},ClientRedisLib.RedisClass.ZAggregate)">
+            <summary>
+            Launch the "ZINTERSTORE" or "ZUNIONSTORE" command To computes the union of numkeys sorted sets given by the specified keys, and stores the result in destination
+            </summary>
+            <param name="keyWord">must be "ZINTERSTORE" or "ZUNIONSTORE"</param>
+            <param name="destination">the key to update or create as the result of the operation</param>
+            <param name="keys">the list of keys with ponderation weight</param>
+            <param name="aggregate">the agregate operation</param>
+            <returns>the number of values in the result set</returns>
+        </member>
+        <member name="M:ClientRedisLib.RedisConnector.BPopInternal(System.String,System.Int32,System.String,System.String[])">
+            <summary>
+            Launch the "BLPOP" or 'BRPOP" command To removes and returns the first (or last) element of the lists stored at keys. If lists are empty wait and block the client
+            </summary>
+            <param name="keyWord">Must be "BLPOP" or 'BRPOP"</param>
+            <param name="timeOut">The time in seconds to wait if all lists are empty</param>
+            <param name="key">the key of the first list to pop</param>
+            <param name="keys">the keys of other lists to pop</param>
+            <returns>null if timeOut : Tuple(key, value) else</returns>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.Host">
+            <summary>
+            Redis server host
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.Port">
+            <summary>
+            Redis server port
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.Password">
+            <summary>
+            redis server password
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.LastErrorText">
+            <summary>
+            last error encountered
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.LastCommandText">
+            <summary>
+            Last command launched
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.SendTimeout">
+            <summary>
+            Socket send timeout for fine tunning (default set to -1)
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.ReceiveTimeout">
+            <summary>
+            Socket receive timeout for fine tunning (default set to -1)
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.ConnectTimeout">
+            <summary>
+            Connect to server Time out (default set to 0 = no wait)
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.ServerVersionTxt">
+            <summary>
+            Return the string that represent the server version
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.ServerVersionIsHigherThan240">
+            <summary>
+            Return True if the Redis Server version is Higher or equal to 2.4
+            Under this version the driver isn't be tested
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.ServerInSentinelMode">
+            <summary>
+            Return true if the server is in sentinel mode
+            </summary>
+        </member>
+        <member name="P:ClientRedisLib.RedisConnector.Db">
+            <summary>
+            Get or set the database ID
+            </summary>
+        </member>
+        <member name="T:ClientRedisLib.RedisPipeline">
+            <summary>
+            Redis pipeline object
+            </summary>
+        </member>
+        <member name="F:ClientRedisLib.RedisPipeline.myList">
+            <summary>
+            List of queued commands
+            </summary>
+        </member>
+        <member name="M:ClientRedisLib.RedisPipeline.CompleteBytesQueuedCommand(System.Func{ClientRedisLib.RedisClass.RedisReponse})">
+            <summary>
+            Enqueue the reponses to find
+            </summary>
+            <param name="returnMethod">Method to call</param>
+        </member>
+    </members>
+</doc>

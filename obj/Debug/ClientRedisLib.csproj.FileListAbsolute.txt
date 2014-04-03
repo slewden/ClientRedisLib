@@ -1,0 +1,25 @@
+H:\ClientRedisSolution\ClientRedisLib\bin\Debug\ClientRedisLib.dll
+H:\ClientRedisSolution\ClientRedisLib\bin\Debug\ClientRedisLib.pdb
+H:\ClientRedisSolution\ClientRedisLib\obj\Debug\ResolveAssemblyReference.cache
+H:\ClientRedisSolution\ClientRedisLib\obj\Debug\ClientRedisLib.dll
+H:\ClientRedisSolution\ClientRedisLib\obj\Debug\ClientRedisLib.pdb
+G:\Projets\NoSql\Redis\ClientRedisSolution\ClientRedisLib\bin\Debug\ClientRedisLib.dll
+G:\Projets\NoSql\Redis\ClientRedisSolution\ClientRedisLib\bin\Debug\ClientRedisLib.pdb
+G:\Projets\NoSql\Redis\ClientRedisSolution\ClientRedisLib\obj\Debug\ClientRedisLib.dll
+G:\Projets\NoSql\Redis\ClientRedisSolution\ClientRedisLib\obj\Debug\ClientRedisLib.pdb
+C:\Projet\Redis\Dev SLew\ClientRedisSolution\ClientRedisLib\bin\Debug\ClientRedisLib.dll
+C:\Projet\Redis\Dev SLew\ClientRedisSolution\ClientRedisLib\bin\Debug\ClientRedisLib.pdb
+C:\Projet\Redis\Dev SLew\ClientRedisSolution\ClientRedisLib\obj\Debug\ResolveAssemblyReference.cache
+C:\Projet\Redis\Dev SLew\ClientRedisSolution\ClientRedisLib\obj\Debug\ClientRedisLib.dll
+C:\Projet\Redis\Dev SLew\ClientRedisSolution\ClientRedisLib\obj\Debug\ClientRedisLib.pdb
+G:\Projets\NoSql\Redis\ClientRedisLib\bin\Debug\ClientRedisLib.dll
+G:\Projets\NoSql\Redis\ClientRedisLib\bin\Debug\ClientRedisLib.pdb
+G:\Projets\NoSql\Redis\ClientRedisLib\obj\Debug\ClientRedisLib.dll
+G:\Projets\NoSql\Redis\ClientRedisLib\obj\Debug\ClientRedisLib.pdb
+G:\Projets\NoSql\Redis\ClientRedisLib\obj\Debug\ClientRedisLib.csprojResolveAssemblyReference.cache
+I:\Projets\NoSql\Redis\ClientRedisLib\bin\Debug\ClientRedisLib.dll
+I:\Projets\NoSql\Redis\ClientRedisLib\bin\Debug\ClientRedisLib.pdb
+I:\Projets\NoSql\Redis\ClientRedisLib\obj\Debug\ClientRedisLib.csprojResolveAssemblyReference.cache
+I:\Projets\NoSql\Redis\ClientRedisLib\obj\Debug\ClientRedisLib.dll
+I:\Projets\NoSql\Redis\ClientRedisLib\obj\Debug\ClientRedisLib.pdb
+I:\Projets\NoSql\Redis\ClientRedisLib\bin\Debug\ClientRedisLib.XML
