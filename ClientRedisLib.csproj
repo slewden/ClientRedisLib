@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B8C62E80-087C-4AF7-9DD4-A9F8A685E061}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClientRedisLib</RootNamespace>
+    <AssemblyName>ClientRedisLib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ClientRedisLib.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedisClass\BitOperation.cs" />
+    <Compile Include="RedisClass\EErrorCode.cs" />
+    <Compile Include="RedisClass\EventMonitorArgs.cs" />
+    <Compile Include="RedisClass\EventSubscribeArgs.cs" />
+    <Compile Include="RedisClass\Handlers.cs" />
+    <Compile Include="RedisClass\IReadUnifiedProtocol.cs" />
+    <Compile Include="RedisClass\Limit.cs" />
+    <Compile Include="RedisClass\MonitorAsyncParam.cs" />
+    <Compile Include="RedisClass\PrecisionTime.cs" />
+    <Compile Include="RedisClass\PublishAsyncParam.cs" />
+    <Compile Include="RedisClass\RedisReponse.cs" />
+    <Compile Include="RedisClass\ShutdownOption.cs" />
+    <Compile Include="RedisClass\SlowLogData.cs" />
+    <Compile Include="RedisClass\SortedSet.cs" />
+    <Compile Include="RedisClass\SortOrder.cs" />
+    <Compile Include="RedisClass\UnifiedProtocolReader.cs" />
+    <Compile Include="RedisClass\ZAggregate.cs" />
+    <Compile Include="RedisConnector.cs" />
+    <Compile Include="RedisConnector2.cs" />
+    <Compile Include="RedisPipeline.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
